@@ -14,7 +14,7 @@ export const OlympicRings = () => {
 		green: 10
 	});
 
-	const updateStrokeWidth = () => {
+	/* const updateStrokeWidth = () => {
 		setStrokeWidth({
 			blue: Math.random() * 20,
 			black: Math.random() * 20,
@@ -23,10 +23,10 @@ export const OlympicRings = () => {
 			green: Math.random() * 20
 		});
 	};
-
+ */
 	useEffect(() => {
 		if (svgRef.current) {
-			const svg = d3.select(svgRef.current).attr('width', 600).attr('height', 300);
+			const svg = d3.select(svgRef.current).attr('width', 400).attr('height', 180);
 
 			// Draw the background circles
 			svg.selectAll('*').remove();
@@ -34,7 +34,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 100)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius)
 				.attr('stroke', 'blue')
 				.attr('stroke-width', strokeWidth.blue)
@@ -44,7 +44,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 220)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius)
 				.attr('stroke', 'black')
 				.attr('stroke-width', strokeWidth.black)
@@ -54,7 +54,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 340)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius)
 				.attr('stroke', 'red')
 				.attr('stroke-width', strokeWidth.red)
@@ -64,7 +64,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 160)
-				.attr('cy', 150)
+				.attr('cy', 110)
 				.attr('r', ringRadius)
 				.attr('stroke', 'yellow')
 				.attr('stroke-width', strokeWidth.yellow)
@@ -74,7 +74,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 280)
-				.attr('cy', 150)
+				.attr('cy', 110)
 				.attr('r', ringRadius)
 				.attr('stroke', 'green')
 				.attr('stroke-width', strokeWidth.green)
@@ -90,7 +90,7 @@ export const OlympicRings = () => {
 				.attr('id', 'clip-blue')
 				.append('circle')
 				.attr('cx', 160)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius);
 
 			// Black over Yellow and Green
@@ -107,7 +107,7 @@ export const OlympicRings = () => {
 				.attr('id', 'clip-black-green')
 				.append('circle')
 				.attr('cx', 280)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius);
 
 			// Red over Green
@@ -123,7 +123,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 100)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius)
 				.attr('stroke', 'blue')
 				.attr('stroke-width', strokeWidth.blue)
@@ -133,7 +133,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 220)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius)
 				.attr('stroke', 'black')
 				.attr('stroke-width', strokeWidth.black)
@@ -143,7 +143,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 220)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius)
 				.attr('stroke', 'black')
 				.attr('stroke-width', strokeWidth.black)
@@ -153,7 +153,7 @@ export const OlympicRings = () => {
 			svg
 				.append('circle')
 				.attr('cx', 340)
-				.attr('cy', 100)
+				.attr('cy', 60)
 				.attr('r', ringRadius)
 				.attr('stroke', 'red')
 				.attr('stroke-width', strokeWidth.red)
@@ -202,7 +202,7 @@ export const OlympicRings = () => {
 	return (
 		<>
 			<svg className='d3-component' ref={svgRef} />
-			<button onClick={updateStrokeWidth}>Animate Stroke Width</button>
+			{/* <button onClick={updateStrokeWidth}>Animate Stroke Width</button> */}
 		</>
 	);
 };

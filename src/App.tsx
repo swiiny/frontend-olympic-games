@@ -1,13 +1,18 @@
-import { useState } from 'react';
-import './App.css';
-import { OlympicRings } from './OlympicRings';
+import { ThemeProvider } from 'styled-components';
+import ResponsiveContextProvider from './contexts/ResponsiveContext';
+import HomePage from './home/_components/HomePage';
+import GlobalStyles from './styles/GlobalStyles';
+import { defaultTheme } from './styles/theme';
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
 		<>
-			<OlympicRings />
+			<ThemeProvider theme={defaultTheme}>
+				<ResponsiveContextProvider>
+					<GlobalStyles />
+					<HomePage />
+				</ResponsiveContextProvider>
+			</ThemeProvider>
 		</>
 	);
 }
