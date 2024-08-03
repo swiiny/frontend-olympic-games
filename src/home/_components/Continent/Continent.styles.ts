@@ -49,17 +49,24 @@ export const StyledContinentLabel = styled.p<{ color: TOlympicRingColors }>(
 
 export const StyledTotalMedalWon = styled.p<{ color: TOlympicRingColors }>(
 	({ theme, color }) => css`
-		font-size: 3.5rem;
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
 
-		text-align: right;
+		&,
+		& span {
+			font-size: 3.5rem;
 
-		color: transparent;
-		background-color: ${theme.colors[color]};
+			text-align: right;
 
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+			color: transparent;
+			background-color: ${theme.colors[color]};
 
-		text-shadow: 1px 2px 1px rgba(255, 255, 255, 0.2);
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+
+			text-shadow: 1px 2px 1px rgba(255, 255, 255, 0.2);
+		}
 	`
 );

@@ -27,15 +27,21 @@ export const StyledMedalIcon = styled.div<{ type: 'gold' | 'silver' | 'bronze' }
 
 export const StyledMedalAmount = styled.p<{ type: 'gold' | 'silver' | 'bronze' }>(
 	({ theme, type }) => css`
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
 		width: 40px;
 
-		background-image: ${theme.colors.gradient[type]};
+		&,
+		& span {
+			background-image: ${theme.colors.gradient[type]};
 
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
 
-		color: transparent;
-		text-shadow: 1px 2px 1px rgba(255, 255, 255, 0.15);
+			color: transparent;
+			text-shadow: 1px 2px 1px rgba(255, 255, 255, 0.15);
+		}
 	`
 );
