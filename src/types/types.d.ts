@@ -13,3 +13,5 @@ type TUseResponsive = {
 	isSmallerThanXl?: boolean;
 	isSmallerThanXxl?: boolean;
 };
+
+type TOlympicRingColors = 'blue' | 'black' | 'red' | 'yellow' | 'green';

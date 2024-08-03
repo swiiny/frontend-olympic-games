@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import { useEffect, useRef, useState } from 'react';
+import { useTheme } from 'styled-components';
 
 const maxStrokeWidth = 20;
 const minStrokeWidth = 5;
@@ -34,6 +35,8 @@ export const OlympicRings = () => {
 
 	const ringRadius = 50;
 
+	const { colors } = useTheme();
+
 	// to update with dynamic data
 	const strokesWidth = getStrokeWidth({
 		europe: 441,
@@ -67,7 +70,7 @@ export const OlympicRings = () => {
 				.attr('cx', 100)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', 'blue')
+				.attr('stroke', colors.blue)
 				.attr('stroke-width', strokeWidth.blue)
 				.attr('fill', 'none')
 				.attr('id', 'circle-blue');
@@ -77,7 +80,7 @@ export const OlympicRings = () => {
 				.attr('cx', 220)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', 'black')
+				.attr('stroke', colors.black)
 				.attr('stroke-width', strokeWidth.black)
 				.attr('fill', 'none')
 				.attr('id', 'circle-black');
@@ -87,7 +90,7 @@ export const OlympicRings = () => {
 				.attr('cx', 340)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', 'red')
+				.attr('stroke', colors.red)
 				.attr('stroke-width', strokeWidth.red)
 				.attr('fill', 'none')
 				.attr('id', 'circle-red');
@@ -97,7 +100,7 @@ export const OlympicRings = () => {
 				.attr('cx', 160)
 				.attr('cy', 110)
 				.attr('r', ringRadius)
-				.attr('stroke', 'yellow')
+				.attr('stroke', colors.yellow)
 				.attr('stroke-width', strokeWidth.yellow)
 				.attr('fill', 'none')
 				.attr('id', 'circle-yellow');
@@ -107,7 +110,7 @@ export const OlympicRings = () => {
 				.attr('cx', 280)
 				.attr('cy', 110)
 				.attr('r', ringRadius)
-				.attr('stroke', 'green')
+				.attr('stroke', colors.green)
 				.attr('stroke-width', strokeWidth.green)
 				.attr('fill', 'none')
 				.attr('id', 'circle-green');
@@ -156,7 +159,7 @@ export const OlympicRings = () => {
 				.attr('cx', 100)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', 'blue')
+				.attr('stroke', colors.blue)
 				.attr('stroke-width', strokeWidth.blue)
 				.attr('fill', 'none')
 				.attr('clip-path', 'url(#clip-blue)');
@@ -166,7 +169,7 @@ export const OlympicRings = () => {
 				.attr('cx', 220)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', 'black')
+				.attr('stroke', colors.black)
 				.attr('stroke-width', strokeWidth.black)
 				.attr('fill', 'none')
 				.attr('clip-path', 'url(#clip-black-yellow)');
@@ -176,7 +179,7 @@ export const OlympicRings = () => {
 				.attr('cx', 220)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', 'black')
+				.attr('stroke', colors.black)
 				.attr('stroke-width', strokeWidth.black)
 				.attr('fill', 'none')
 				.attr('clip-path', 'url(#clip-black-green)');
@@ -186,7 +189,7 @@ export const OlympicRings = () => {
 				.attr('cx', 340)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', 'red')
+				.attr('stroke', colors.red)
 				.attr('stroke-width', strokeWidth.red)
 				.attr('fill', 'none')
 				.attr('clip-path', 'url(#clip-red)');
@@ -228,7 +231,18 @@ export const OlympicRings = () => {
 
 			d3.select('#clip-red circle').transition().duration(1000).attr('stroke-width', strokeWidth.red); */
 		}
-	}, [strokeWidth.black, strokeWidth.blue, strokeWidth.green, strokeWidth.red, strokeWidth.yellow]);
+	}, [
+		colors.black,
+		colors.blue,
+		colors.green,
+		colors.red,
+		colors.yellow,
+		strokeWidth.black,
+		strokeWidth.blue,
+		strokeWidth.green,
+		strokeWidth.red,
+		strokeWidth.yellow
+	]);
 
 	return (
 		<>

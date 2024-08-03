@@ -54,6 +54,12 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 			font-style: normal;
 		}
 
+		p,
+		span,
+		a {
+			font-size: 1rem;
+		}
+
 		.pt-sans-regular {
 			font-family: 'PT Sans', sans-serif;
 			font-weight: 400;
