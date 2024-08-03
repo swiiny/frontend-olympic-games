@@ -1,18 +1,49 @@
 import * as d3 from 'd3';
 import { useEffect, useRef, useState } from 'react';
 
+const maxStrokeWidth = 20;
+const minStrokeWidth = 5;
+
+function getStrokeWidth(continentMedals: {
+	europe: number;
+	asia: number;
+	america: number;
+	africa: number;
+	oceania: number;
+}) {
+	const totalMedals =
+		continentMedals.europe +
+		continentMedals.asia +
+		continentMedals.america +
+		continentMedals.africa +
+		continentMedals.oceania;
+
+	const strokeWidth = {
+		blue: (continentMedals.europe / totalMedals) * maxStrokeWidth + minStrokeWidth,
+		black: (continentMedals.asia / totalMedals) * maxStrokeWidth + minStrokeWidth,
+		red: (continentMedals.america / totalMedals) * maxStrokeWidth + minStrokeWidth,
+		yellow: (continentMedals.africa / totalMedals) * maxStrokeWidth + minStrokeWidth,
+		green: (continentMedals.oceania / totalMedals) * maxStrokeWidth + minStrokeWidth
+	};
+
+	return strokeWidth;
+}
+
 export const OlympicRings = () => {
 	const svgRef = useRef(null);
 
 	const ringRadius = 50;
 
-	const [strokeWidth, setStrokeWidth] = useState({
-		blue: 10,
-		black: 10,
-		red: 10,
-		yellow: 10,
-		green: 10
+	// to update with dynamic data
+	const strokesWidth = getStrokeWidth({
+		europe: 441,
+		asia: 236,
+		america: 210,
+		africa: 41,
+		oceania: 49
 	});
+
+	const [strokeWidth, setStrokeWidth] = useState(strokesWidth);
 
 	/* const updateStrokeWidth = () => {
 		setStrokeWidth({

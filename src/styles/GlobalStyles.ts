@@ -37,6 +37,55 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 			height: 100%;
 			overflow: hidden;
 		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		span,
+		a {
+			margin: 0;
+
+			font-family: 'PT Sans', sans-serif;
+			font-weight: 400;
+			font-style: normal;
+		}
+
+		.pt-sans-regular {
+			font-family: 'PT Sans', sans-serif;
+			font-weight: 400;
+			font-style: normal;
+		}
+
+		.pt-sans-bold {
+			font-family: 'PT Sans', sans-serif;
+			font-weight: 700;
+			font-style: normal;
+		}
+
+		.pt-sans-regular-italic {
+			font-family: 'PT Sans', sans-serif;
+			font-weight: 400;
+			font-style: italic;
+		}
+
+		.pt-sans-bold-italic {
+			font-family: 'PT Sans', sans-serif;
+			font-weight: 700;
+			font-style: italic;
+		}
+
+		.martian-mono,
+		.number {
+			font-family: 'Martian Mono', monospace;
+			font-optical-sizing: auto;
+			font-weight: 400;
+			font-style: normal;
+			font-variation-settings: 'wdth' 100;
+		}
 	`
 );
 

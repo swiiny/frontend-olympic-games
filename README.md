@@ -15,6 +15,7 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 ## À faire
 
 - [ ] Implémenter l'interface de base
+- [ ] Add metadata
 - [ ] Mettre à jour le compteur de médailles en temps réel
 - [ ] Changer la largeur des cercles en fonction du nombre de médailles
 - [ ] Make it juicy 💦
