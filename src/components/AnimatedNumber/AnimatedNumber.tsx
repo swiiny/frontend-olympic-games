@@ -18,7 +18,7 @@ export const AnimatedNumber: FC<{ value: number }> = ({ value }) => {
 
 						gsap.to(char, {
 							duration: 0.2,
-							ease: 'power1.inOut',
+							ease: 'power1.out',
 							fontVariationSettings: "'wght' 700" // Target weight
 						});
 					}}
@@ -26,7 +26,7 @@ export const AnimatedNumber: FC<{ value: number }> = ({ value }) => {
 						const char = e.target as HTMLElement;
 						gsap.to(char, {
 							duration: 0.2,
-							ease: 'power1.inOut',
+							ease: 'power1.out',
 							fontVariationSettings: "'wght' 400" // Initial weight
 						});
 					}}

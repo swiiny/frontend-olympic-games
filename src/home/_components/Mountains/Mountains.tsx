@@ -12,7 +12,7 @@ function exponentialTransform(offset: { x: number; y: number }, distance: number
 	const transformX = Math.sign(offset.x) * Math.pow(Math.abs(offset.x), 1 / distance);
 	const transformY = Math.sign(offset.y) * Math.pow(Math.abs(offset.y), 1 / distance);
 	return {
-		transform: `translate(${transformX / 2}px, ${transformY / 4}px)`
+		transform: `translate(${transformX / 3}px, ${transformY / 4}px)`
 	};
 }
 

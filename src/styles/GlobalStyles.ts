@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 			// disable globally tap highlight on mobile devices
 			-webkit-tap-highlight-color: transparent;
 		}
+
 		*::before {
 			box-sizing: border-box;
 		}
@@ -81,9 +82,6 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 
 		.martian-mono,
 		p.number,
-		p .number,
-		p .number span,
-		p span.number,
 		.number {
 			font-family: 'Martian Mono', monospace;
 			font-optical-sizing: auto;
@@ -94,13 +92,7 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 			font-weight: 100 800;
 		}
 
-		svg {
-			transform-style: preserve-3d;
-			perspective: 800px;
-		}
-
 		.circle {
-			transform-origin: center;
 			will-change: transform;
 		}
 	`

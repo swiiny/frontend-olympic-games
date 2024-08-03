@@ -34,3 +34,8 @@ export const StyledOlympicRingsContainer = styled.div`
 	padding-top: 140px;
 	padding-bottom: 100px;
 `;
+
+export const StyledSpan = styled.span`
+	all: inherit;
+	display: inline;
+`;

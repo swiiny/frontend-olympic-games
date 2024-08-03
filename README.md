@@ -16,6 +16,8 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 
 - [ ] Implémenter l'interface de base
 - [ ] Add metadata + cache for images & queries
+- [ ] Work on the appear animation
+- [ ] Work on the responsiveness
 - [x] Mettre à jour le compteur de médailles en temps réel
 - [x] Changer la largeur des cercles en fonction du nombre de médailles
 - [ ] Make it juicy 💦
