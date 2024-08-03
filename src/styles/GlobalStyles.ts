@@ -22,7 +22,6 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 				margin: 0 auto;
 
 				max-width: ${EMediaQuery.xl};
-				padding: 0 20px;
 
 				${mq(EMediaQuery.md, 'padding: 0;')}
 

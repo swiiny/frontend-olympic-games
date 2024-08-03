@@ -2,6 +2,8 @@ import useResponsive from '@hooks/useResponsive';
 import * as d3 from 'd3';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTheme } from 'styled-components';
+import { EContinent } from '../Continent/continent.enums';
+import { continentMap } from '../Continent/Continent.variables';
 import { getStrokeWidth } from './OlympicRings.functions';
 import { ringRadius } from './OlympicRings.variables';
 
@@ -13,11 +15,11 @@ export const OlympicRings = () => {
 
 	// to update with dynamic data
 	const strokesWidth = getStrokeWidth({
-		europe: 441,
-		asia: 236,
-		america: 210,
-		africa: 41,
-		oceania: 49
+		[EContinent.europe]: 441,
+		[EContinent.asia]: 236,
+		[EContinent.america]: 210,
+		[EContinent.africa]: 41,
+		[EContinent.oceania]: 49
 	});
 
 	const [strokeWidth, setStrokeWidth] = useState(strokesWidth);
@@ -38,63 +40,67 @@ export const OlympicRings = () => {
 		if (svgRef.current) {
 			const svg = d3.select(svgRef.current).attr('width', 400).attr('height', 170);
 
-			// Draw the background circles
+			// Clear previous SVG content
 			svg.selectAll('*').remove();
 
-			svg
-				.append('circle')
-				.attr('cx', 80)
-				.attr('cy', 60)
-				.attr('r', ringRadius)
-				.attr('stroke', colors.blue)
-				.attr('stroke-width', strokeWidth.blue)
-				.attr('fill', 'none')
-				.attr('id', 'circle-blue');
+			// Define the shadow filter
+			const defs = svg.append('defs');
+			const filter = defs
+				.append('filter')
+				.attr('id', 'shadow')
+				.attr('x', '-50%')
+				.attr('y', '-50%')
+				.attr('width', '200%')
+				.attr('height', '200%');
+			filter
+				.append('feDropShadow')
+				.attr('dx', 1)
+				.attr('dy', 1)
+				.attr('stdDeviation', 3)
+				.attr('flood-color', '#000000')
+				.attr('flood-opacity', 0.2);
 
-			svg
-				.append('circle')
-				.attr('cx', 200)
-				.attr('cy', 60)
-				.attr('r', ringRadius)
-				.attr('stroke', colors.black)
-				.attr('stroke-width', strokeWidth.black)
-				.attr('fill', 'none')
-				.attr('id', 'circle-black');
+			// Draw the background circles
+			const circlesData = [
+				{ cx: 80, cy: 60, continent: EContinent.europe, id: 'circle-blue', filter: 'url(#shadow)' },
+				{
+					cx: 200,
+					cy: 60,
+					continent: EContinent.africa,
+					id: 'circle-black',
+					filter: 'url(#shadow)'
+				},
+				{ cx: 320, cy: 60, continent: EContinent.america, id: 'circle-red', filter: 'url(#shadow)' },
+				{
+					cx: 140,
+					cy: 110,
+					continent: EContinent.asia,
+					id: 'circle-yellow',
+					filter: 'url(#shadow)'
+				},
+				{
+					cx: 260,
+					cy: 110,
+					continent: EContinent.oceania,
+					id: 'circle-green',
+					filter: 'url(#shadow)'
+				}
+			];
 
-			svg
-				.append('circle')
-				.attr('cx', 320)
-				.attr('cy', 60)
-				.attr('r', ringRadius)
-				.attr('stroke', colors.red)
-				.attr('stroke-width', strokeWidth.red)
-				.attr('fill', 'none')
-				.attr('id', 'circle-red');
-
-			svg
-				.append('circle')
-				.attr('cx', 140)
-				.attr('cy', 110)
-				.attr('r', ringRadius)
-				.attr('stroke', colors.yellow)
-				.attr('stroke-width', strokeWidth.yellow)
-				.attr('fill', 'none')
-				.attr('id', 'circle-yellow');
-
-			svg
-				.append('circle')
-				.attr('cx', 260)
-				.attr('cy', 110)
-				.attr('r', ringRadius)
-				.attr('stroke', colors.green)
-				.attr('stroke-width', strokeWidth.green)
-				.attr('fill', 'none')
-				.attr('id', 'circle-green');
+			circlesData.forEach((circle) => {
+				svg
+					.append('circle')
+					.attr('cx', circle.cx)
+					.attr('cy', circle.cy)
+					.attr('r', ringRadius)
+					.attr('stroke', colors[continentMap[circle.continent].color])
+					.attr('stroke-width', strokeWidth[circle.continent])
+					.attr('fill', 'none')
+					.attr('id', circle.id)
+					.attr('filter', circle.filter);
+			});
 
 			// Define the clipping paths for the intersections
-			const defs = svg.append('defs');
-
-			// Blue over Yellow
 			defs
 				.append('clipPath')
 				.attr('id', 'clip-blue')
@@ -103,7 +109,6 @@ export const OlympicRings = () => {
 				.attr('cy', 60)
 				.attr('r', ringRadius);
 
-			// Black over Yellow and Green
 			defs
 				.append('clipPath')
 				.attr('id', 'clip-black-yellow')
@@ -120,7 +125,6 @@ export const OlympicRings = () => {
 				.attr('cy', 60)
 				.attr('r', ringRadius);
 
-			// Red over Green
 			defs
 				.append('clipPath')
 				.attr('id', 'clip-red')
@@ -135,8 +139,8 @@ export const OlympicRings = () => {
 				.attr('cx', 80)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', colors.blue)
-				.attr('stroke-width', strokeWidth.blue)
+				.attr('stroke', colors[continentMap[EContinent.europe].color])
+				.attr('stroke-width', strokeWidth[EContinent.europe])
 				.attr('fill', 'none')
 				.attr('clip-path', 'url(#clip-blue)');
 
@@ -145,8 +149,8 @@ export const OlympicRings = () => {
 				.attr('cx', 200)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', colors.black)
-				.attr('stroke-width', strokeWidth.black)
+				.attr('stroke', colors[continentMap[EContinent.africa].color])
+				.attr('stroke-width', strokeWidth[EContinent.africa])
 				.attr('fill', 'none')
 				.attr('clip-path', 'url(#clip-black-yellow)');
 
@@ -155,8 +159,8 @@ export const OlympicRings = () => {
 				.attr('cx', 200)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', colors.black)
-				.attr('stroke-width', strokeWidth.black)
+				.attr('stroke', colors[continentMap[EContinent.africa].color])
+				.attr('stroke-width', strokeWidth[EContinent.africa])
 				.attr('fill', 'none')
 				.attr('clip-path', 'url(#clip-black-green)');
 
@@ -165,60 +169,12 @@ export const OlympicRings = () => {
 				.attr('cx', 320)
 				.attr('cy', 60)
 				.attr('r', ringRadius)
-				.attr('stroke', colors.red)
-				.attr('stroke-width', strokeWidth.red)
+				.attr('stroke', colors[continentMap[EContinent.america].color])
+				.attr('stroke-width', strokeWidth[EContinent.america])
 				.attr('fill', 'none')
 				.attr('clip-path', 'url(#clip-red)');
-
-			// Transition to animate stroke width
-			/* svg
-				.selectAll('circle')
-				.transition()
-				.duration(1000)
-				.attr('stroke-width', (d, i) => {
-					switch (i) {
-						case 0:
-							return strokeWidth.blue;
-						case 1:
-							return strokeWidth.black;
-						case 2:
-							return strokeWidth.red;
-						case 3:
-							return strokeWidth.yellow;
-						case 4:
-							return strokeWidth.green;
-						default:
-							return 10;
-					}
-				}); */
-
-			/* 	d3.select('#circle-blue').transition().duration(1000).attr('stroke-width', strokeWidth.blue);
-			d3.select('#circle-black').transition().duration(1000).attr('stroke-width', strokeWidth.black);
-			d3.select('#circle-red').transition().duration(1000).attr('stroke-width', strokeWidth.red);
-			d3.select('#circle-yellow').transition().duration(1000).attr('stroke-width', strokeWidth.yellow);
-			d3.select('#circle-green').transition().duration(1000).attr('stroke-width', strokeWidth.green);
-
-			// Animate the clipping path circles as well
-			d3.select('#clip-blue circle').transition().duration(1000).attr('stroke-width', strokeWidth.blue);
-
-			d3.select('#clip-black-yellow circle').transition().duration(1000).attr('stroke-width', strokeWidth.black);
-
-			d3.select('#clip-black-green circle').transition().duration(1000).attr('stroke-width', strokeWidth.black);
-
-			d3.select('#clip-red circle').transition().duration(1000).attr('stroke-width', strokeWidth.red); */
 		}
-	}, [
-		colors.black,
-		colors.blue,
-		colors.green,
-		colors.red,
-		colors.yellow,
-		strokeWidth.black,
-		strokeWidth.blue,
-		strokeWidth.green,
-		strokeWidth.red,
-		strokeWidth.yellow
-	]);
+	}, [colors, strokeWidth]);
 
 	return (
 		<>

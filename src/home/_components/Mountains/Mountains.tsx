@@ -32,8 +32,6 @@ export const Mountains: FC = () => {
 		};
 	}, []);
 
-	console.log(offset);
-
 	return (
 		<StyledMountainsContainer>
 			<StyledMainMountains
