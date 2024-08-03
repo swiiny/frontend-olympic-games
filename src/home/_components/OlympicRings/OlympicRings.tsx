@@ -108,8 +108,8 @@ export const OlympicRings = () => {
 				.append('clipPath')
 				.attr('id', 'clip-black-yellow')
 				.append('circle')
-				.attr('cx', 180)
-				.attr('cy', 180)
+				.attr('cx', 150)
+				.attr('cy', 120)
 				.attr('r', ringRadius);
 
 			defs
@@ -125,8 +125,8 @@ export const OlympicRings = () => {
 				.append('clipPath')
 				.attr('id', 'clip-red')
 				.append('circle')
-				.attr('cx', 310)
-				.attr('cy', 180)
+				.attr('cx', 320)
+				.attr('cy', 90)
 				.attr('r', ringRadius);
 
 			// Draw the circles again with clipping paths
