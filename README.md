@@ -17,7 +17,7 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 - [ ] Implémenter l'interface de base
 - [ ] Add metadata + cache for images & queries
 - [x] Mettre à jour le compteur de médailles en temps réel
-- [ ] Changer la largeur des cercles en fonction du nombre de médailles
+- [x] Changer la largeur des cercles en fonction du nombre de médailles
 - [ ] Make it juicy 💦
 - [ ] S'assurer que le projet démarre sans erreur après avoir pull le repo
 

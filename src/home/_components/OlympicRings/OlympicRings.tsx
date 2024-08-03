@@ -7,6 +7,52 @@ import { continentMap } from '../Continent/Continent.variables';
 import { getStrokeWidth } from './OlympicRings.functions';
 import { ringRadius } from './OlympicRings.variables';
 
+const circlesData = [
+	{
+		cx: 80,
+		cy: 70,
+		continent: EContinent.europe,
+		id: 'circle-blue',
+		filter: 'url(#shadow)',
+		clipPaths: [{ id: 'clip-blue', cx: 162, cy: 65 }]
+	},
+	{
+		cx: 200,
+		cy: 70,
+		continent: EContinent.africa,
+		id: 'circle-black',
+		filter: 'url(#shadow)',
+		clipPaths: [
+			{ id: 'clip-black-yellow', cx: 152, cy: 135 },
+			{ id: 'clip-black-green', cx: 245, cy: 45 }
+		]
+	},
+	{
+		cx: 320,
+		cy: 70,
+		continent: EContinent.america,
+		id: 'circle-red',
+		filter: 'url(#shadow)',
+		clipPaths: [{ id: 'clip-red', cx: 335, cy: 120 }]
+	},
+	{
+		cx: 140,
+		cy: 120,
+		continent: EContinent.asia,
+		id: 'circle-yellow',
+		filter: 'url(#shadow)',
+		clipPaths: []
+	},
+	{
+		cx: 260,
+		cy: 120,
+		continent: EContinent.oceania,
+		id: 'circle-green',
+		filter: 'url(#shadow)',
+		clipPaths: []
+	}
+];
+
 export const OlympicRings = () => {
 	const svgRef = useRef(null);
 
@@ -38,12 +84,11 @@ export const OlympicRings = () => {
 
 	useEffect(() => {
 		if (svgRef.current) {
-			const svg = d3.select(svgRef.current).attr('width', 400).attr('height', 170);
+			const svg = d3.select(svgRef.current).attr('width', 400).attr('height', 190);
 
-			// Clear previous SVG content
 			svg.selectAll('*').remove();
 
-			// Define the shadow filter
+			// Add the shadow
 			const defs = svg.append('defs');
 			const filter = defs
 				.append('filter')
@@ -60,119 +105,117 @@ export const OlympicRings = () => {
 				.attr('flood-color', '#000000')
 				.attr('flood-opacity', 0.2);
 
-			// Draw the background circles
-			const circlesData = [
-				{ cx: 80, cy: 60, continent: EContinent.europe, id: 'circle-blue', filter: 'url(#shadow)' },
-				{
-					cx: 200,
-					cy: 60,
-					continent: EContinent.africa,
-					id: 'circle-black',
-					filter: 'url(#shadow)'
-				},
-				{ cx: 320, cy: 60, continent: EContinent.america, id: 'circle-red', filter: 'url(#shadow)' },
-				{
-					cx: 140,
-					cy: 110,
-					continent: EContinent.asia,
-					id: 'circle-yellow',
-					filter: 'url(#shadow)'
-				},
-				{
-					cx: 260,
-					cy: 110,
-					continent: EContinent.oceania,
-					id: 'circle-green',
-					filter: 'url(#shadow)'
-				}
-			];
-
+			// Define the clipping paths for the intersections
 			circlesData.forEach((circle) => {
-				svg
-					.append('circle')
-					.attr('cx', circle.cx)
-					.attr('cy', circle.cy)
-					.attr('r', ringRadius)
-					.attr('stroke', colors[continentMap[circle.continent].color])
-					.attr('stroke-width', strokeWidth[circle.continent])
-					.attr('fill', 'none')
-					.attr('id', circle.id)
-					.attr('filter', circle.filter);
+				circle.clipPaths.forEach((clip) => {
+					defs
+						.append('clipPath')
+						.attr('id', clip.id)
+						.append('circle')
+						.attr('cx', clip.cx)
+						.attr('cy', clip.cy)
+						.attr('r', ringRadius);
+				});
 			});
 
-			// Define the clipping paths for the intersections
-			defs
-				.append('clipPath')
-				.attr('id', 'clip-blue')
-				.append('circle')
-				.attr('cx', 160)
-				.attr('cy', 60)
-				.attr('r', ringRadius);
-
-			defs
-				.append('clipPath')
-				.attr('id', 'clip-black-yellow')
-				.append('circle')
-				.attr('cx', 150)
-				.attr('cy', 120)
-				.attr('r', ringRadius);
-
-			defs
-				.append('clipPath')
-				.attr('id', 'clip-black-green')
-				.append('circle')
-				.attr('cx', 240)
-				.attr('cy', 60)
-				.attr('r', ringRadius);
-
-			defs
-				.append('clipPath')
-				.attr('id', 'clip-red')
-				.append('circle')
-				.attr('cx', 320)
-				.attr('cy', 90)
-				.attr('r', ringRadius);
-
-			// Draw the circles again with clipping paths
+			// Draw main circles first
 			svg
+				.selectAll('circle.main-circle')
+				.data(circlesData)
+				.enter()
 				.append('circle')
-				.attr('cx', 80)
-				.attr('cy', 60)
+				.attr('class', 'main-circle')
+				.attr('cx', (d) => d.cx)
+				.attr('cy', (d) => d.cy)
 				.attr('r', ringRadius)
-				.attr('stroke', colors[continentMap[EContinent.europe].color])
-				.attr('stroke-width', strokeWidth[EContinent.europe])
-				.attr('fill', 'none')
-				.attr('clip-path', 'url(#clip-blue)');
+				.attr('stroke', (d) => colors[continentMap[d.continent].color])
+				.attr('stroke-width', (d) => strokeWidth[d.continent])
+				.attr('fill', 'rgba(0,0,0,0)') // Set fill to transparent
+				.attr('id', (d) => d.id)
+				.attr('filter', (d) => d.filter);
 
+			// Draw the clipped circles
 			svg
-				.append('circle')
-				.attr('cx', 200)
-				.attr('cy', 60)
-				.attr('r', ringRadius)
-				.attr('stroke', colors[continentMap[EContinent.africa].color])
-				.attr('stroke-width', strokeWidth[EContinent.africa])
-				.attr('fill', 'none')
-				.attr('clip-path', 'url(#clip-black-yellow)');
+				.selectAll('circle.clipped-circle')
+				.data(circlesData)
+				.enter()
+				.append('g')
+				.attr('class', (d) => `clipped-circle-group group-${d.id}`)
+				.each(function (d) {
+					const group = d3.select(this);
+					d.clipPaths.forEach((clip) => {
+						group
+							.append('circle')
+							.attr('cx', d.cx)
+							.attr('cy', d.cy)
+							.attr('r', ringRadius)
+							.attr('stroke', colors[continentMap[d.continent].color])
+							.attr('stroke-width', strokeWidth[d.continent])
+							.attr('fill', 'none')
+							.attr('clip-path', `url(#${clip.id})`);
+					});
+				});
 
+			// Create invisible circles for hover detection
 			svg
+				.selectAll('circle.hover-circle')
+				.data(circlesData)
+				.enter()
 				.append('circle')
-				.attr('cx', 200)
-				.attr('cy', 60)
-				.attr('r', ringRadius)
-				.attr('stroke', colors[continentMap[EContinent.africa].color])
-				.attr('stroke-width', strokeWidth[EContinent.africa])
-				.attr('fill', 'none')
-				.attr('clip-path', 'url(#clip-black-green)');
+				.attr('class', 'hover-circle')
+				.attr('cx', (d) => d.cx)
+				.attr('cy', (d) => d.cy)
+				.attr('r', ringRadius + 20) // Increase the radius for better hover detection
+				.attr('fill', 'rgba(0,0,0,0.0)') // Set fill to transparent
+				.attr('pointer-events', 'all') // Ensure the invisible circle can detect events
+				.on('mouseover', (event, d) => {
+					const [mouseX, mouseY] = d3.pointer(event);
+					const offsetX = (mouseX - d.cx) * 0.1; // Move 10% towards the mouse
+					const offsetY = (mouseY - d.cy) * 0.1;
 
-			svg
-				.append('circle')
-				.attr('cx', 320)
-				.attr('cy', 60)
-				.attr('r', ringRadius)
-				.attr('stroke', colors[continentMap[EContinent.america].color])
-				.attr('stroke-width', strokeWidth[EContinent.america])
-				.attr('fill', 'none')
-				.attr('clip-path', 'url(#clip-red)');
+					d3.select(`#${d.id}`)
+						.transition()
+						.ease(d3.easeBounceIn)
+						.duration(200)
+						.attr('cx', d.cx + offsetX)
+						.attr('cy', d.cy + offsetY);
+
+					d3.selectAll(`.group-${d.id} circle`)
+						.transition()
+						.ease(d3.easeBounceIn)
+						.duration(200)
+						.attr('cx', d.cx + offsetX)
+						.attr('cy', d.cy + offsetY);
+				})
+				.on('mousemove', (event, d) => {
+					const [mouseX, mouseY] = d3.pointer(event);
+					const offsetX = (mouseX - d.cx) * 0.1; // Move 10% towards the mouse
+					const offsetY = (mouseY - d.cy) * 0.1;
+
+					d3.select(`#${d.id}`)
+						.transition()
+						.ease(d3.easeLinear)
+						.duration(100)
+						.attr('cx', d.cx + offsetX)
+						.attr('cy', d.cy + offsetY);
+
+					d3.selectAll(`.group-${d.id} circle`)
+						.transition()
+						.ease(d3.easeLinear)
+						.duration(100)
+						.attr('cx', d.cx + offsetX)
+						.attr('cy', d.cy + offsetY);
+				})
+				.on('mouseout', (_, d) => {
+					d3.select(`#${d.id}`).transition().ease(d3.easeBounceOut).duration(500).attr('cx', d.cx).attr('cy', d.cy);
+
+					d3.selectAll(`.group-${d.id} circle`)
+						.transition()
+						.ease(d3.easeBounceOut)
+						.duration(500)
+						.attr('cx', d.cx)
+						.attr('cy', d.cy);
+				});
 		}
 	}, [colors, strokeWidth]);
 
