@@ -1,74 +1,18 @@
 import useResponsive from '@hooks/useResponsive';
+import useStrokesWidth from '@hooks/useStrokesWidth';
 import * as d3 from 'd3';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { FC, useEffect, useMemo, useRef } from 'react';
 import { useTheme } from 'styled-components';
-import { EContinent } from '../Continent/continent.enums';
 import { continentMap } from '../Continent/Continent.variables';
-import { getStrokeWidth } from './OlympicRings.functions';
-import { ringRadius } from './OlympicRings.variables';
+import { circlesData, ringRadius } from './OlympicRings.variables';
 
-const circlesData = [
-	{
-		cx: 80,
-		cy: 70,
-		continent: EContinent.europe,
-		id: 'circle-blue',
-		filter: 'url(#shadow)',
-		clipPaths: [{ id: 'clip-blue', cx: 162, cy: 65 }]
-	},
-	{
-		cx: 200,
-		cy: 70,
-		continent: EContinent.africa,
-		id: 'circle-black',
-		filter: 'url(#shadow)',
-		clipPaths: [
-			{ id: 'clip-black-yellow', cx: 152, cy: 135 },
-			{ id: 'clip-black-green', cx: 245, cy: 45 }
-		]
-	},
-	{
-		cx: 320,
-		cy: 70,
-		continent: EContinent.america,
-		id: 'circle-red',
-		filter: 'url(#shadow)',
-		clipPaths: [{ id: 'clip-red', cx: 335, cy: 120 }]
-	},
-	{
-		cx: 140,
-		cy: 120,
-		continent: EContinent.asia,
-		id: 'circle-yellow',
-		filter: 'url(#shadow)',
-		clipPaths: []
-	},
-	{
-		cx: 260,
-		cy: 120,
-		continent: EContinent.oceania,
-		id: 'circle-green',
-		filter: 'url(#shadow)',
-		clipPaths: []
-	}
-];
-
-export const OlympicRings = () => {
+export const OlympicRings: FC = () => {
 	const svgRef = useRef(null);
 
 	const { isSmallerThanMd } = useResponsive();
 	const { colors } = useTheme();
 
-	// to update with dynamic data
-	const strokesWidth = getStrokeWidth({
-		[EContinent.europe]: 441,
-		[EContinent.asia]: 236,
-		[EContinent.america]: 210,
-		[EContinent.africa]: 41,
-		[EContinent.oceania]: 49
-	});
-
-	const [strokeWidth, setStrokeWidth] = useState(strokesWidth);
+	const strokesWidth = useStrokesWidth();
 
 	const style = useMemo(() => {
 		if (isSmallerThanMd) {
@@ -129,7 +73,7 @@ export const OlympicRings = () => {
 				.attr('cy', (d) => d.cy)
 				.attr('r', ringRadius)
 				.attr('stroke', (d) => colors[continentMap[d.continent].color])
-				.attr('stroke-width', (d) => strokeWidth[d.continent])
+				.attr('stroke-width', (d) => strokesWidth[d.continent])
 				.attr('fill', 'rgba(0,0,0,0)') // Set fill to transparent
 				.attr('id', (d) => d.id)
 				.attr('filter', (d) => d.filter);
@@ -150,7 +94,7 @@ export const OlympicRings = () => {
 							.attr('cy', d.cy)
 							.attr('r', ringRadius)
 							.attr('stroke', colors[continentMap[d.continent].color])
-							.attr('stroke-width', strokeWidth[d.continent])
+							.attr('stroke-width', strokesWidth[d.continent])
 							.attr('fill', 'none')
 							.attr('clip-path', `url(#${clip.id})`);
 					});
@@ -217,11 +161,7 @@ export const OlympicRings = () => {
 						.attr('cy', d.cy);
 				});
 		}
-	}, [colors, strokeWidth]);
+	}, [colors, strokesWidth]);
 
-	return (
-		<>
-			<svg className='d3-component' ref={svgRef} style={style} />
-		</>
-	);
+	return <svg className='d3-component' ref={svgRef} style={style} />;
 };
