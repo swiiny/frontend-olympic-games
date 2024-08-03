@@ -10,11 +10,11 @@ export const HomePage = () => {
 			<StyledTitle>Médailles Olympiques par continents - Paris 2024</StyledTitle>
 
 			<StyledOlympicRingsContainer>
-				<Continent type={EContinent.europe} goldAmount={136} silverAmount={151} bronzeAmount={154} />
-				<Continent type={EContinent.africa} goldAmount={10} silverAmount={18} bronzeAmount={17} />
-				<Continent type={EContinent.america} goldAmount={76} silverAmount={60} bronzeAmount={74} />
-				<Continent type={EContinent.asia} goldAmount={71} silverAmount={58} bronzeAmount={97} />
-				<Continent type={EContinent.oceania} goldAmount={13} silverAmount={20} bronzeAmount={16} />
+				<Continent type={EContinent.europe} />
+				<Continent type={EContinent.africa} />
+				<Continent type={EContinent.america} />
+				<Continent type={EContinent.asia} />
+				<Continent type={EContinent.oceania} />
 
 				<OlympicRings />
 			</StyledOlympicRingsContainer>

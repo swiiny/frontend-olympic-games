@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { StyledMainMountains, StyledMountainsContainer, StyledSmallMountains } from './Mountains.styles';
 
 const distance = {
-	full: 8,
+	full: 12,
 	small1: 3,
 	small2: 6,
 	small3: 4

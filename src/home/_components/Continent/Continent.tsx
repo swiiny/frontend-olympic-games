@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import useMedalsQuery from 'src/queries/useMedalsQuery';
 import MedalWon from '../MedalWon';
 import { EContinent } from './continent.enums';
 import {
@@ -12,16 +13,17 @@ import { continentMap } from './Continent.variables';
 
 export const Continent: FC<{
 	type: EContinent;
-	goldAmount: number;
-	silverAmount: number;
-	bronzeAmount: number;
-}> = ({ type, goldAmount, silverAmount, bronzeAmount }) => {
+}> = ({ type }) => {
+	const { data } = useMedalsQuery();
+
+	const { goldAmount, silverAmount, bronzeAmount, totalAmount } = data[type];
+
 	return (
 		<StyledContinentContainer style={continentMap[type].style}>
 			<StyledContinentHeader>
 				<StyledContinentLabel color={continentMap[type].color}>{continentMap[type].label}</StyledContinentLabel>
 				<StyledTotalMedalWon className='number' color={continentMap[type].color}>
-					{goldAmount + silverAmount + bronzeAmount}
+					{totalAmount}
 				</StyledTotalMedalWon>
 			</StyledContinentHeader>
 

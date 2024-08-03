@@ -121,7 +121,7 @@ export const OlympicRings = () => {
 				.append('clipPath')
 				.attr('id', 'clip-black-green')
 				.append('circle')
-				.attr('cx', 280)
+				.attr('cx', 240)
 				.attr('cy', 60)
 				.attr('r', ringRadius);
 
