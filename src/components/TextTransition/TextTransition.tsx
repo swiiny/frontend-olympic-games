@@ -3,18 +3,22 @@ import { useEffect, useRef, useState, type CSSProperties, type PropsWithChildren
 
 export interface TextTransitionProps {
 	className?: string;
+	childrenClassName?: string;
 	delay?: number;
 	direction?: 'up' | 'down';
 	inline?: boolean;
 	springConfig?: SpringConfig;
 	style?: CSSProperties;
 	translateValue?: string;
+	onMouseEnter?: (event: MouseEvent) => void;
+	onMouseLeave?: (event: MouseEvent) => void;
 }
 
 /**
  * This component is copy-pasted from https://github.com/WinterCore/react-text-transition/blob/master/src/components/TextTransition.tsx
  * The original library returns div elements, but I changed it to span elements to make it semantically correct
  * and remove the error in the console.
+ * I also added the childrenClassName prop to allow the user to style the children and the onMouseEnter and onMouseLeave props
  */
 export function TextTransition(props: PropsWithChildren<TextTransitionProps>) {
 	const {
@@ -25,7 +29,9 @@ export function TextTransition(props: PropsWithChildren<TextTransitionProps>) {
 		className,
 		style,
 		translateValue: tv = '100%',
-		children
+		children,
+		childrenClassName,
+		...otherProps
 	} = props;
 
 	const initialRun = useRef(true);
@@ -79,9 +85,15 @@ export function TextTransition(props: PropsWithChildren<TextTransitionProps>) {
 				display: inline ? 'inline-flex' : 'flex',
 				height: heightRef.current
 			}}
+			{...otherProps}
 		>
 			{transitions((styles, item) => (
-				<animated.span style={{ ...styles }} ref={item === children ? currentRef : undefined} children={item} />
+				<animated.span
+					className={childrenClassName}
+					style={{ ...styles }}
+					ref={item === children ? currentRef : undefined}
+					children={item}
+				/>
 			))}
 		</animated.span>
 	);

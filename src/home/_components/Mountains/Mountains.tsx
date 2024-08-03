@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { StyledMainMountains, StyledMountainsContainer, StyledSmallMountains } from './Mountains.styles';
 
 const distance = {
-	full: 12,
+	full: 10,
 	small1: 3,
 	small2: 6,
 	small3: 4
@@ -12,7 +12,7 @@ function exponentialTransform(offset: { x: number; y: number }, distance: number
 	const transformX = Math.sign(offset.x) * Math.pow(Math.abs(offset.x), 1 / distance);
 	const transformY = Math.sign(offset.y) * Math.pow(Math.abs(offset.y), 1 / distance);
 	return {
-		transform: `translate(${transformX / 4}px, ${transformY / 8}px)`
+		transform: `translate(${transformX / 2}px, ${transformY / 4}px)`
 	};
 }
 

@@ -37,19 +37,10 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 			overflow: hidden;
 		}
 
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6,
-		p,
-		span,
-		a {
+		h1 {
 			margin: 0;
 
 			font-family: 'PT Sans', sans-serif;
-			font-weight: 400;
 			font-style: normal;
 		}
 
@@ -57,6 +48,11 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 		span,
 		a {
 			font-size: 1rem;
+
+			margin: 0;
+
+			font-family: 'PT Sans', sans-serif;
+			font-style: normal;
 		}
 
 		.pt-sans-regular {
@@ -84,12 +80,28 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 		}
 
 		.martian-mono,
+		p.number,
+		p .number,
+		p .number span,
+		p span.number,
 		.number {
 			font-family: 'Martian Mono', monospace;
 			font-optical-sizing: auto;
-			font-weight: 400;
+
 			font-style: normal;
-			font-variation-settings: 'wdth' 100;
+			font-variation-settings: 'wdth' 400;
+
+			font-weight: 100 800;
+		}
+
+		svg {
+			transform-style: preserve-3d;
+			perspective: 800px;
+		}
+
+		.circle {
+			transform-origin: center;
+			will-change: transform;
 		}
 	`
 );
