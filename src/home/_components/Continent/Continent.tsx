@@ -17,7 +17,7 @@ export const Continent: FC<{
 	bronzeAmount: number;
 }> = ({ type, goldAmount, silverAmount, bronzeAmount }) => {
 	return (
-		<StyledContinentContainer>
+		<StyledContinentContainer style={continentMap[type].style}>
 			<StyledContinentHeader>
 				<StyledContinentLabel color={continentMap[type].color}>{continentMap[type].label}</StyledContinentLabel>
 				<StyledTotalMedalWon className='number' color={continentMap[type].color}>

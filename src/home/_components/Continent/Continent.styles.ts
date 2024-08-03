@@ -6,6 +6,8 @@ export const StyledContinentContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
+	position: absolute;
+
 	width: 204px;
 `;
 
