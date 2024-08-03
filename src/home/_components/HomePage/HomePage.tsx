@@ -1,5 +1,6 @@
 import { Continent } from '../Continent';
 import { EContinent } from '../Continent/continent.enums';
+import Mountains from '../Mountains';
 import OlympicRings from '../OlympicRings';
 import { StyledHomePageContainer, StyledOlympicRingsContainer, StyledTitle } from './HomePage.styles';
 
@@ -17,6 +18,8 @@ export const HomePage = () => {
 
 				<OlympicRings />
 			</StyledOlympicRingsContainer>
+
+			<Mountains />
 		</StyledHomePageContainer>
 	);
 };

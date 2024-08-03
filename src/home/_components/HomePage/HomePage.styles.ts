@@ -5,14 +5,13 @@ export const StyledHomePageContainer = styled.div`
 
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
 
 	width: 100%;
 	height: 100dvh;
 `;
 
 export const StyledTitle = styled.h1`
-	margin-top: 0px;
+	margin-top: 60px;
 	margin-bottom: 40px;
 
 	font-size: 2.25rem;
@@ -20,6 +19,8 @@ export const StyledTitle = styled.h1`
 
 export const StyledOlympicRingsContainer = styled.div`
 	position: relative;
+
+	z-index: 1;
 
 	display: flex;
 	align-items: center;

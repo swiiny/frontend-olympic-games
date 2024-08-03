@@ -16,9 +16,9 @@ export function getStrokeWidth(continentMedals: {
 
 	const strokeWidth = {
 		blue: (continentMedals.europe / totalMedals) * maxStrokeWidth + minStrokeWidth,
-		black: (continentMedals.asia / totalMedals) * maxStrokeWidth + minStrokeWidth,
+		black: (continentMedals.africa / totalMedals) * maxStrokeWidth + minStrokeWidth,
 		red: (continentMedals.america / totalMedals) * maxStrokeWidth + minStrokeWidth,
-		yellow: (continentMedals.africa / totalMedals) * maxStrokeWidth + minStrokeWidth,
+		yellow: (continentMedals.asia / totalMedals) * maxStrokeWidth + minStrokeWidth,
 		green: (continentMedals.oceania / totalMedals) * maxStrokeWidth + minStrokeWidth
 	};
 
