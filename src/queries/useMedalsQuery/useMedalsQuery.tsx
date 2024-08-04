@@ -11,9 +11,9 @@ export const medalsKeys = {
 export const useMedalsQuery = () => {
 	const { data = defaultMedalsQueryResult } = useQuery({
 		queryKey: medalsKeys.all,
-		staleTime: 5 * 60 * 1000,
-		// refetch every 5 minutes + 1 second
-		refetchInterval: 5 * 60 * 1000 + 1000,
+		staleTime: 10 * 60 * 1000,
+		// refetch every 10 minutes + 1 second
+		refetchInterval: 10 * 60 * 1000 + 1000,
 		queryFn: async () => {
 			const res = await axios.get<{
 				MedalTableNOC: {

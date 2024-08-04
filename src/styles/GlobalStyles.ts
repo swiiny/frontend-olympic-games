@@ -87,9 +87,9 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 			font-optical-sizing: auto;
 
 			font-style: normal;
-			font-variation-settings: 'wdth' 400;
-
 			font-weight: 100 800;
+
+			font-variation-settings: 'wdth' 400;
 		}
 
 		.circle {
