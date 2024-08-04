@@ -39,7 +39,8 @@ export const StyledSpan = styled.span`
 	all: inherit;
 	display: inline-block;
 
-	margin: none;
+	margin-top: 0;
+	margin-bottom: 0;
 
 	transition: all 0.2s ease-in-out;
 

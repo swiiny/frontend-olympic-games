@@ -82,7 +82,7 @@ export const Continent: FC<{
 				<StyledContinentLabel color={continentMap[type].color}>{continentMap[type].label}</StyledContinentLabel>
 
 				<StyledTotalMedalWon className='number' color={continentMap[type].color}>
-					<AnimatedNumber value={totalAmount} />
+					<AnimatedNumber value={totalAmount} withAnimation />
 				</StyledTotalMedalWon>
 			</StyledContinentHeader>
 

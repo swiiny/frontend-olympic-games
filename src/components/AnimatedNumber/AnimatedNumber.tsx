@@ -1,9 +1,8 @@
 import gsap from 'gsap';
-import { CSSProperties, FC, useEffect, useState } from 'react';
+import React, { FC, MouseEventHandler, useEffect, useMemo, useRef, useState } from 'react';
 import CountUp from 'react-countup';
-import TextTransition from '../TextTransition';
 
-export const inheritAll: CSSProperties = {
+const inheritTextStyles: React.CSSProperties = {
 	color: 'inherit',
 	fontFamily: 'inherit',
 	fontSize: 'inherit',
@@ -14,9 +13,10 @@ export const inheritAll: CSSProperties = {
 	textDecoration: 'inherit'
 };
 
-export const AnimatedNumber: FC<{ value: number }> = ({ value }) => {
-	const numbers = value.toString().split('');
+export const AnimatedNumber: FC<{ value: number; withAnimation?: boolean }> = ({ value, withAnimation }) => {
 	const [savedValue, setSavedValue] = useState<number | null>(0);
+
+	const animationRef = useRef<gsap.core.Tween | null>(null);
 
 	// This useEffect hook is used to update the savedValue state after a delay of 1 second.
 	// This is done to be able to start the counter from the previous value and not from 0.
@@ -28,72 +28,52 @@ export const AnimatedNumber: FC<{ value: number }> = ({ value }) => {
 		return () => clearTimeout(timeout);
 	}, [value]);
 
+	const eventHandlers = useMemo<
+		{ onMouseEnter: (e: MouseEvent) => void; onMouseLeave: (e: MouseEvent) => void } | undefined
+	>(() => {
+		if (!withAnimation) return;
+
+		return {
+			onMouseEnter: (e: MouseEvent) => {
+				const char = e.target as HTMLSpanElement;
+
+				animationRef.current = gsap.to(char, {
+					duration: 16 / value,
+					ease: 'power1.out',
+					yoyo: true,
+					repeat: -1,
+					fontVariationSettings: "'wght' 700" // Target weight
+				});
+			},
+			onMouseLeave: (e: MouseEvent) => {
+				const char = e.target as HTMLSpanElement;
+
+				// Kill the animation if it exists
+				if (animationRef.current) {
+					animationRef.current.kill();
+					animationRef.current = null;
+				}
+
+				animationRef.current = gsap.to(char, {
+					duration: 0.2,
+					ease: 'power1.out',
+					fontVariationSettings: "'wght' 400" // Initial weight
+				});
+			}
+		};
+	}, [value, withAnimation]);
+
 	//return numbers;
 	return (
 		<CountUp
 			className='number'
-			style={inheritAll}
+			style={inheritTextStyles}
 			start={savedValue || 0}
 			delay={0}
 			duration={2}
 			end={value}
 			preserveValue
-			containerProps={{
-				onMouseEnter: (e) => {
-					const char = e.target as HTMLElement;
-
-					gsap.to(char, {
-						duration: 0.2,
-						ease: 'power1.out',
-						fontVariationSettings: "'wght' 700" // Target weight
-					});
-				},
-				onMouseLeave: (e) => {
-					const char = e.target as HTMLElement;
-					gsap.to(char, {
-						duration: 0.2,
-						ease: 'power1.out',
-						fontVariationSettings: "'wght' 400" // Initial weight
-					});
-				}
-			}}
+			containerProps={eventHandlers as unknown as { onMouseEnter: MouseEventHandler; onMouseLeave: MouseEventHandler }}
 		/>
-	);
-
-	return (
-		<>
-			{numbers.map((number, index) => (
-				<TextTransition
-					key={index}
-					inline
-					className='number'
-					childrenClassName='number'
-					onMouseEnter={(e: MouseEvent) => {
-						const char = e.target as HTMLElement;
-
-						gsap.to(char, {
-							duration: 0.2,
-							ease: 'power1.out',
-							fontVariationSettings: "'wght' 700" // Target weight
-						});
-					}}
-					onMouseLeave={(e: MouseEvent) => {
-						const char = e.target as HTMLElement;
-						gsap.to(char, {
-							duration: 0.2,
-							ease: 'power1.out',
-							fontVariationSettings: "'wght' 400" // Initial weight
-						});
-					}}
-					springConfig={{
-						tension: 200,
-						friction: 20
-						//bounce: 1
-					}}
-				>
-					{number}
-				</TextTransition>
-			))}
-		</>
 	);
 };
