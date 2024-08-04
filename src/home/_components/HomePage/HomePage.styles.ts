@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledHomePageContainer = styled.div`
 	display: flex;
@@ -35,17 +35,23 @@ export const StyledOlympicRingsContainer = styled.div`
 	padding-bottom: 100px;
 `;
 
-export const StyledSpan = styled.span`
-	all: inherit;
-	display: inline-block;
+export const StyledSpan = styled.span<{ isInteractionEnabled: boolean }>(
+	({ isInteractionEnabled }) => css`
+		all: inherit;
+		display: inline-block;
 
-	margin-top: 0;
-	margin-bottom: 0;
+		margin-top: 0;
+		margin-bottom: 0;
 
-	transition: all 0.2s ease-in-out;
+		transition: all 0.2s ease-in-out;
 
-	&:hover {
-		opacity: 0;
-		transform: scale(0.9) translateY(-5px);
-	}
-`;
+		${!isInteractionEnabled
+			? css`
+					&:hover {
+						opacity: 0;
+						transform: scale(0.9) translateY(-5px);
+					}
+			  `
+			: ''}
+	`
+);

@@ -41,7 +41,7 @@ export const Mountains: FC = () => {
 	}, []);
 
 	return (
-		<StyledMountainsContainer>
+		<StyledMountainsContainer className='mountains-container'>
 			<StyledMainMountains
 				src='/mountains/mountains-full.webp'
 				alt='Mountains'

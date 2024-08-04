@@ -17,10 +17,11 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 <details>
 <summary>Attention, spoiler !</summary>
 
-- Que se passe-t-il si tu passes ton curseur en dessus du mot "Paris" dans le titre ?
-- Les montagnes bougent en fonction de la position de ta souris mais... que se passe-t-il si tu passes ton curseur en dessus ?
+- Les montagnes bougent en fonction de la position de ton curseur mais... que se passe-t-il si tu passes ton curseur en dessus ?
 - Les totaux pour chaque continent pulsent au hover en fonction du nombre de médailles
-- Ton curseur a un effet de magnétisme sur les cercles du logo des Jeux Olympiques
+- Ton curseur a un effet magnétique sur les cercles du logo des Jeux Olympiques
+- Que se passe-t-il si tu passes ton curseur en dessus du mot "Paris" dans le titre ?
+- Et si tu cliques dessus ?
 
 </details>
 
@@ -28,14 +29,13 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 
 - [ ] Implémenter l'interface de base
 - [ ] Add metadata + cache for images & queries
-- [ ] Work on the appear animation
+- [x] Work on the appear animation
 - [ ] Work on the responsiveness
 - [x] Mettre à jour le compteur de médailles en temps réel
 - [x] Changer la largeur des cercles en fonction du nombre de médailles
-- [ ] Make it juicy 💦
+- [x] Make it juicy 💦
 - [ ] S'assurer que le projet démarre sans erreur après avoir pull le repo
 
 ## Ressources
 
-- Image du Mont Blanc: [https://www.flickr.com/photos/pascal-blachier/2224158082](https://www.flickr.com/photos/pascal-blachier/2224158082)
 - Image du Mont Blanc: [https://commons.wikimedia.org/wiki/File:Monte_bianco.JPG](https://commons.wikimedia.org/wiki/File:Monte_bianco.JPG)

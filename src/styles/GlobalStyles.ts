@@ -19,16 +19,14 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 		}
 
 		body {
-			${(p) => css`
-				margin: 0 auto;
+			margin: 0 auto;
 
-				max-width: ${EMediaQuery.xl};
+			max-width: ${EMediaQuery.xl};
 
-				${mq(EMediaQuery.md, 'padding: 0;')}
+			${mq(EMediaQuery.md, 'padding: 0;')}
 
-				min-height: 100dvh;
-				background: ${p.theme.colors.white};
-			`}
+			min-height: 100dvh;
+			background: ${theme.colors.white};
 		}
 
 		html {

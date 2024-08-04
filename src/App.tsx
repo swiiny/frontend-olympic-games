@@ -12,7 +12,7 @@ const queryClient = new QueryClient();
 function App() {
 	return (
 		<ThemeProvider theme={defaultTheme}>
-			<GlobalStyles />
+			<GlobalStyles theme={defaultTheme} />
 
 			<QueryClientProvider client={queryClient}>
 				<ResponsiveContextProvider>

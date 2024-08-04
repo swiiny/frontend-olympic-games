@@ -1,20 +1,22 @@
 import useResponsive from '@hooks/useResponsive';
 import useStrokesWidth from '@hooks/useStrokesWidth';
 import * as d3 from 'd3';
-import { FC, useEffect, useMemo, useRef } from 'react';
+import { FC, memo, useEffect, useMemo, useRef } from 'react';
 import { useTheme } from 'styled-components';
 import { EContinent } from '../Continent/continent.enums';
 import { continentMap } from '../Continent/Continent.variables';
 import { getOrder } from './OlympicRings.functions';
 import { circlesData, ringRadius } from './OlympicRings.variables';
 
-export const OlympicRings: FC = () => {
+const OlympicRings: FC<{
+	animateToWhite: boolean;
+}> = ({ animateToWhite }) => {
 	const svgRef = useRef(null);
 
 	const { isSmallerThanMd } = useResponsive();
 	const { colors } = useTheme();
 
-	const strokesWidth = useStrokesWidth();
+	const strokesWidth = useStrokesWidth(animateToWhite);
 
 	const style = useMemo(() => {
 		if (isSmallerThanMd) {
@@ -65,7 +67,7 @@ export const OlympicRings: FC = () => {
 				});
 			});
 
-			// Draw main circles first with initial white stroke
+			// Draw main circles first with initial stroke color based on animateToWhite
 			const mainCircles = svg
 				.selectAll('circle.main-circle')
 				.data(circlesData)
@@ -75,13 +77,13 @@ export const OlympicRings: FC = () => {
 				.attr('cx', (d) => d.cx)
 				.attr('cy', (d) => d.cy)
 				.attr('r', ringRadius)
-				.attr('stroke', colors.white)
+				.attr('stroke', (d) => (animateToWhite ? colors[continentMap[d.continent].color] : colors.white))
 				.attr('stroke-width', (d) => strokesWidth[d.continent])
 				.attr('fill', 'rgba(0,0,0,0)')
 				.attr('id', (d) => d.id)
 				.attr('filter', (d) => d.filter);
 
-			// Draw the clipped circles with initial white stroke
+			// Draw the clipped circles with initial stroke color based on animateToWhite
 			const clippedCircleGroups = svg
 				.selectAll('g.clipped-circle-group')
 				.data(circlesData)
@@ -96,34 +98,44 @@ export const OlympicRings: FC = () => {
 							.attr('cx', d.cx)
 							.attr('cy', d.cy)
 							.attr('r', ringRadius)
-							.attr('stroke', colors.white)
+							.attr('stroke', (_) => (animateToWhite ? colors[continentMap[d.continent].color] : colors.white))
 							.attr('stroke-width', strokesWidth[d.continent])
 							.attr('fill', 'none')
 							.attr('clip-path', `url(#${clip.id})`);
 					});
 				});
 
-			// Transition to the final color and add the "transition-done" class
-			mainCircles
-				.transition()
-				.duration(1000)
-				.delay((d) => (getOrder(d.continent) - 1) * 110 + 40) // Adjust delay time as needed
-				.attr('stroke', (d) => colors[continentMap[d.continent].color])
-				.on('end', function () {
-					d3.select(this).classed('transition-done', true);
-				});
+			const transitionCircles = () => {
+				const targetColor = animateToWhite
+					? colors.white
+					: (d: { continent: EContinent }) => colors[continentMap[d.continent].color];
 
-			clippedCircleGroups
-				.selectAll<SVGAElement, { continent: EContinent }>('circle')
-				.transition()
-				.duration(1000)
-				.delay((d) => (getOrder(d.continent) - 1) * 110 + 40) // Adjust delay time as needed
-				.attr('stroke', (d) => colors[continentMap[d.continent].color])
-				.on('end', function () {
-					d3.select(this).classed('transition-done', true);
-				});
+				mainCircles
+					.transition()
+					.duration(1000)
+					.delay((d) => (getOrder(d.continent) - 1) * 110 + 40) // Adjust delay time as needed
+					// @ts-ignore
+					.attr('stroke', targetColor)
+					.attr('stroke-width', (d) => strokesWidth[d.continent]) // Animate stroke-width
+					.on('end', function () {
+						d3.select(this).classed('transition-done', true);
+					});
 
-			// Create invisible circles for hover detection
+				clippedCircleGroups
+					.selectAll<SVGAElement, { continent: EContinent }>('circle')
+					.transition()
+					.duration(1000)
+					.delay((d) => (getOrder(d.continent) - 1) * 110 + 40) // Adjust delay time as needed
+					.attr('stroke-width', (d) => strokesWidth[d.continent]) // Animate stroke-width
+					// @ts-ignore
+					.attr('stroke', targetColor)
+					.on('end', function () {
+						d3.select(this).classed('transition-done', true);
+					});
+			};
+
+			transitionCircles();
+
 			svg
 				.selectAll('circle.hover-circle')
 				.data(circlesData)
@@ -190,7 +202,10 @@ export const OlympicRings: FC = () => {
 						.attr('cy', d.cy);
 				});
 		}
-	}, [colors, strokesWidth]);
+	}, [colors, strokesWidth, animateToWhite]);
 
 	return <svg className='d3-component' ref={svgRef} style={style} />;
 };
+
+// Prevent reset on "Vive la France" easter egg activation
+export const OlympicRingsMemoized = memo(OlympicRings);

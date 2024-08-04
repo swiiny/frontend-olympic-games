@@ -77,7 +77,7 @@ export const Continent: FC<{
 	}, [showContinent]);
 
 	return (
-		<StyledContinentContainer data-continent={type} style={continentMap[type].style}>
+		<StyledContinentContainer className='continents' data-continent={type} style={continentMap[type].style}>
 			<StyledContinentHeader>
 				<StyledContinentLabel color={continentMap[type].color}>{continentMap[type].label}</StyledContinentLabel>
 

@@ -1,1 +1,1 @@
-export { OlympicRings as default } from './OlympicRings';
+export { OlympicRingsMemoized as default } from './OlympicRings';
