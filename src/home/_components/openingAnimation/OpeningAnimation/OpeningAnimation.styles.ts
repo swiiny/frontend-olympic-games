@@ -11,20 +11,25 @@ export const StyledOpeningAnimationContainer = styled.div<{ canStartTransition: 
 		// start slowly then accelerate
 		//transition: all 5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 		// transition: all 5s ease-in;
-	`
-);
+		/* 
+		&::before {
+			content: ' ';
+			position: absolute;
 
-export const StyledWrapper = styled.div<{ canStartTransition: boolean }>(
-	({ theme, canStartTransition }) => css`
-		height: 100%;
-		width: 100%;
-		overflow-y: hidden;
+			right: 0;
+			left: 50%;
+			top: 0;
+			bottom: 0;
 
-		background-color: ${theme.colors.black};
+			background-color: ${theme.colors.black};
 
-    faire ça avec gsap pour des raisons de perfs
-		transition: all 0.8s linear;
-		${canStartTransition ? `max-height: 0%; transform: translateY(50vh);` : 'max-height: 100%;'}
+			transform-origin: right;
+			perspective: 1000px;
+
+			transition: all 0.8s ease-out;
+
+			${canStartTransition ? `transform: rotateY(90deg) translateZ(-100px);` : ' transform: rotateY(0deg) translateZ(0);'}
+		} */
 	`
 );
 
@@ -36,7 +41,7 @@ export const StyledFireworkContainer = styled.div<{ type: 'mega' | 'blue' | 'red
 		height: 80vh;
 
 		canvas {
-			height: 1200px;
+			height: 1600px;
 		}
 
 		pointer-events: none;
@@ -54,11 +59,11 @@ export const StyledFireworkContainer = styled.div<{ type: 'mega' | 'blue' | 'red
 			  `
 			: type === 'blue'
 			? css`
-					left: 40%;
+					left: 35%;
 			  `
 			: type === 'red'
 			? css`
-					left: 60%;
+					left: 65%;
 			  `
 			: css`
 					left: 50%;
@@ -79,9 +84,8 @@ export const StyledOlympicRingsContainer = styled.div<{ canStartTransition: bool
 			margin-top: -45px;
 		}
 
-		// start slowly then accelerate
-		// transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		transition: all 0.8s ease-out;
 
-		/* ${canStartTransition ? `transform: scale(0.95);` : ''} */
+		/* ${canStartTransition ? `opacity: 0;` : ''} */
 	`
 );

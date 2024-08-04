@@ -9,6 +9,9 @@ export const StyledContinentContainer = styled.div`
 	position: absolute;
 
 	width: 204px;
+
+	// is set by gsap
+	opacity: 0;
 `;
 
 export const StyledContinentHeader = styled.div`

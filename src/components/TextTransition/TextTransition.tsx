@@ -1,5 +1,5 @@
 import { animated, config, SpringConfig, useSpring, useTransition } from '@react-spring/web';
-import { useEffect, useRef, useState, type CSSProperties, type PropsWithChildren } from 'react';
+import { MouseEventHandler, useEffect, useRef, useState, type CSSProperties, type PropsWithChildren } from 'react';
 
 export interface TextTransitionProps {
 	className?: string;
@@ -10,8 +10,8 @@ export interface TextTransitionProps {
 	springConfig?: SpringConfig;
 	style?: CSSProperties;
 	translateValue?: string;
-	onMouseEnter?: (event: MouseEvent) => void;
-	onMouseLeave?: (event: MouseEvent) => void;
+	onMouseEnter?: MouseEventHandler;
+	onMouseLeave?: MouseEventHandler;
 }
 
 /**

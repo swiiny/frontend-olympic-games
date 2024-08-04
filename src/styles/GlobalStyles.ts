@@ -28,8 +28,6 @@ const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
 
 				min-height: 100dvh;
 				background: ${p.theme.colors.white};
-
-				overflow: hidden;
 			`}
 		}
 

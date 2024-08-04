@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'styled-components';
+import CustomCursor from './components/CustomCursor';
 import ResponsiveContextProvider from './contexts/ResponsiveContext';
 import HomePage from './home/_components/HomePage';
 import GlobalStyles from './styles/GlobalStyles';
@@ -15,6 +16,8 @@ function App() {
 
 			<QueryClientProvider client={queryClient}>
 				<ResponsiveContextProvider>
+					<CustomCursor />
+
 					<HomePage />
 				</ResponsiveContextProvider>
 			</QueryClientProvider>

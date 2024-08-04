@@ -37,5 +37,14 @@ export const StyledOlympicRingsContainer = styled.div`
 
 export const StyledSpan = styled.span`
 	all: inherit;
-	display: inline;
+	display: inline-block;
+
+	margin: none;
+
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		opacity: 0;
+		transform: scale(0.9) translateY(-5px);
+	}
 `;
