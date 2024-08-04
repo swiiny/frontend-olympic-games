@@ -1,5 +1,11 @@
+import { useDraggable } from '@hooks/useDraggable/useDraggable';
 import { FC, useEffect, useState } from 'react';
-import { StyledMainMountains, StyledMountainsContainer, StyledSmallMountains } from './Mountains.styles';
+import {
+	StyledMainMountains,
+	StyledMountainsContainer,
+	StyledSmallMountains,
+	StylesMadeInSwitzerland
+} from './Mountains.styles';
 
 const distance = {
 	full: 10,
@@ -18,6 +24,8 @@ function exponentialTransform(offset: { x: number; y: number }, distance: number
 
 export const Mountains: FC = () => {
 	const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+	const { containerRef } = useDraggable();
 
 	const handleMouseMove = (event: MouseEvent) => {
 		const x = window.innerWidth / 2 - event.clientX;
@@ -41,7 +49,15 @@ export const Mountains: FC = () => {
 				style={exponentialTransform(offset, distance.full)}
 			/>
 
+			<StylesMadeInSwitzerland
+				src='/made-in-switzerland.svg'
+				alt='Made in Switzerland'
+				draggable={false}
+				className='made-in-switzerland'
+			/>
+
 			<StyledSmallMountains
+				ref={containerRef}
 				src='/mountains/mountains-small-1.webp'
 				alt='Mountains'
 				draggable={false}

@@ -37,8 +37,11 @@ export const AnimatedNumber: FC<{ value: number; withAnimation?: boolean }> = ({
 			onMouseEnter: (e: MouseEvent) => {
 				const char = e.target as HTMLSpanElement;
 
+				const speed = 16 / value;
+
 				animationRef.current = gsap.to(char, {
-					duration: 16 / value,
+					// format the speed so it's between 0.08 and 1
+					duration: Math.max(0.08, Math.min(1, speed)),
 					ease: 'power1.out',
 					yoyo: true,
 					repeat: -1,
@@ -63,7 +66,6 @@ export const AnimatedNumber: FC<{ value: number; withAnimation?: boolean }> = ({
 		};
 	}, [value, withAnimation]);
 
-	//return numbers;
 	return (
 		<CountUp
 			className='number'

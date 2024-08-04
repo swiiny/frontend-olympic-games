@@ -37,7 +37,6 @@ export const StyledMountainsContainer = styled.div`
 export const StyledMainMountains = styled.img`
 	width: 100%;
 	height: auto;
-	//opacity: 0.2;
 `;
 
 export const StyledSmallMountains = styled.img`
@@ -54,6 +53,16 @@ export const StyledSmallMountains = styled.img`
 		aspect-ratio: 742 / 498;
 		width: calc((742 / 4858) * 102%);
 		left: calc(32% - 2px);
+
+		pointer-events: all;
+
+		z-index: 2;
+
+		cursor: grab;
+
+		&:active {
+			cursor: grabbing;
+		}
 	}
 
 	// original mountains small 2 width 558px
@@ -69,4 +78,16 @@ export const StyledSmallMountains = styled.img`
 		width: calc((1350 / 4858) * 102%);
 		right: 0px;
 	}
+`;
+
+export const StylesMadeInSwitzerland = styled.img`
+	position: absolute;
+
+	z-index: 1;
+
+	aspect-ratio: 81 / 43;
+	width: calc((488 / 4858) * 100%);
+	left: calc(33%);
+
+	bottom: 60px;
 `;

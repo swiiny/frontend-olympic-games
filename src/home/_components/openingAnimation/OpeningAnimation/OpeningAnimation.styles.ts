@@ -85,7 +85,5 @@ export const StyledOlympicRingsContainer = styled.div<{ canStartTransition: bool
 		}
 
 		transition: all 0.8s ease-out;
-
-		/* ${canStartTransition ? `opacity: 0;` : ''} */
 	`
 );

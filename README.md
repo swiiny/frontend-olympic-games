@@ -12,6 +12,18 @@ npm run preview # serve the project
 
 Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173](http://localhost:4173)
 
+## Easter egg
+
+<details>
+<summary>Attention, spoiler !</summary>
+
+- Que se passe-t-il si tu passes ton curseur en dessus du mot "Paris" dans le titre ?
+- Les montagnes bougent en fonction de la position de ta souris mais... que se passe-t-il si tu passes ton curseur en dessus ?
+- Les totaux pour chaque continent pulsent au hover en fonction du nombre de médailles
+- Ton curseur a un effet de magnétisme sur les cercles du logo des Jeux Olympiques
+
+</details>
+
 ## À faire
 
 - [ ] Implémenter l'interface de base
