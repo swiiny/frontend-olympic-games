@@ -2,26 +2,31 @@ import { Continent } from '../Continent';
 import { EContinent } from '../Continent/continent.enums';
 import Mountains from '../Mountains';
 import OlympicRings from '../OlympicRings';
+import OpeningAnimation from '../openingAnimation/OpeningAnimation';
 import { StyledHomePageContainer, StyledOlympicRingsContainer, StyledSpan, StyledTitle } from './HomePage.styles';
 
 export const HomePage = () => {
 	return (
-		<StyledHomePageContainer>
-			<StyledTitle>
-				Médailles Olympiques par continents - <StyledSpan>Paris</StyledSpan> 2024
-			</StyledTitle>
+		<>
+			<OpeningAnimation />
 
-			<StyledOlympicRingsContainer>
-				<Continent type={EContinent.europe} />
-				<Continent type={EContinent.africa} />
-				<Continent type={EContinent.america} />
-				<Continent type={EContinent.asia} />
-				<Continent type={EContinent.oceania} />
+			<StyledHomePageContainer>
+				<StyledTitle>
+					Médailles Olympiques par continents - <StyledSpan>Paris</StyledSpan> 2024
+				</StyledTitle>
 
-				<OlympicRings />
-			</StyledOlympicRingsContainer>
+				<StyledOlympicRingsContainer>
+					<Continent type={EContinent.europe} />
+					<Continent type={EContinent.africa} />
+					<Continent type={EContinent.america} />
+					<Continent type={EContinent.asia} />
+					<Continent type={EContinent.oceania} />
 
-			<Mountains />
-		</StyledHomePageContainer>
+					<OlympicRings />
+				</StyledOlympicRingsContainer>
+
+				<Mountains />
+			</StyledHomePageContainer>
+		</>
 	);
 };

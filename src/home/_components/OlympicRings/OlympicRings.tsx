@@ -6,13 +6,13 @@ import { useTheme } from 'styled-components';
 import { continentMap } from '../Continent/Continent.variables';
 import { circlesData, ringRadius } from './OlympicRings.variables';
 
-export const OlympicRings: FC = () => {
+export const OlympicRings: FC<{ isOpeningPage: boolean }> = ({ isOpeningPage = false }) => {
 	const svgRef = useRef(null);
 
 	const { isSmallerThanMd } = useResponsive();
 	const { colors } = useTheme();
 
-	const strokesWidth = useStrokesWidth();
+	const strokesWidth = useStrokesWidth(isOpeningPage);
 
 	const style = useMemo(() => {
 		if (isSmallerThanMd) {
@@ -72,7 +72,7 @@ export const OlympicRings: FC = () => {
 				.attr('cx', (d) => d.cx)
 				.attr('cy', (d) => d.cy)
 				.attr('r', ringRadius)
-				.attr('stroke', (d) => colors[continentMap[d.continent].color])
+				.attr('stroke', (d) => (isOpeningPage ? colors.white : colors[continentMap[d.continent].color]))
 				.attr('stroke-width', (d) => strokesWidth[d.continent])
 				.attr('fill', 'rgba(0,0,0,0)') // Set fill to transparent
 				.attr('id', (d) => d.id)
@@ -93,7 +93,7 @@ export const OlympicRings: FC = () => {
 							.attr('cx', d.cx)
 							.attr('cy', d.cy)
 							.attr('r', ringRadius)
-							.attr('stroke', colors[continentMap[d.continent].color])
+							.attr('stroke', isOpeningPage ? colors.white : colors[continentMap[d.continent].color])
 							.attr('stroke-width', strokesWidth[d.continent])
 							.attr('fill', 'none')
 							.attr('clip-path', `url(#${clip.id})`);

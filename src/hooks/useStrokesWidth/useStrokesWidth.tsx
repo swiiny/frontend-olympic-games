@@ -4,8 +4,18 @@ import useMedalsQuery from 'src/queries/useMedalsQuery';
 const maxStrokeWidth = 24;
 const minStrokeWidth = 4;
 
-export function useStrokesWidth() {
+export function useStrokesWidth(isWidthFixed?: boolean) {
 	const { data } = useMedalsQuery();
+
+	if (isWidthFixed) {
+		return {
+			[EContinent.europe]: 10,
+			[EContinent.africa]: 10,
+			[EContinent.america]: 10,
+			[EContinent.asia]: 10,
+			[EContinent.oceania]: 10
+		};
+	}
 
 	const totalMedals =
 		data.europe.totalAmount +
