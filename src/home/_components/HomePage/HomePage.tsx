@@ -5,7 +5,13 @@ import { EContinent } from '../Continent/continent.enums';
 import Mountains from '../Mountains';
 import OlympicRings from '../OlympicRings';
 import ViveLaFrance from '../ViveLaFrance';
-import { StyledHomePageContainer, StyledOlympicRingsContainer, StyledSpan, StyledTitle } from './HomePage.styles';
+import {
+	StyledBackground,
+	StyledHomePageContainer,
+	StyledOlympicRingsContainer,
+	StyledSpan,
+	StyledTitle
+} from './HomePage.styles';
 
 export const HomePage = () => {
 	const { onMouseEnter, onMouseLeave } = useCustomCursor();
@@ -27,13 +33,14 @@ export const HomePage = () => {
 			<ViveLaFrance isActive={isParisTheCityOfLight} />
 
 			<StyledHomePageContainer>
+				<StyledBackground className='dark-background' />
+
 				<StyledTitle>
 					Médailles Olympiques par continent -{' '}
 					<StyledSpan
-						isInteractionEnabled={isParisTheCityOfLight}
 						onMouseEnter={onMouseEnter}
 						onMouseLeave={onMouseLeave}
-						onClick={() => setIsParisTheCityOfLight(true)}
+						onClick={() => setIsParisTheCityOfLight((prev) => !prev)}
 					>
 						Paris
 					</StyledSpan>{' '}

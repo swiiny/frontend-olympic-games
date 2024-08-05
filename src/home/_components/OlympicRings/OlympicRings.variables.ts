@@ -9,7 +9,7 @@ export const circlesData = [
 		continent: EContinent.europe,
 		id: 'circle-blue',
 		filter: 'url(#shadow)',
-		clipPaths: [{ id: 'clip-blue', cx: 162, cy: 65 }]
+		clipPaths: [{ id: 'clip-blue', cx: 158, cy: 65 }]
 	},
 	{
 		cx: 200,
@@ -18,7 +18,7 @@ export const circlesData = [
 		id: 'circle-black',
 		filter: 'url(#shadow)',
 		clipPaths: [
-			{ id: 'clip-black-yellow', cx: 152, cy: 135 },
+			{ id: 'clip-black-yellow', cx: 153, cy: 135 },
 			{ id: 'clip-black-green', cx: 245, cy: 45 }
 		]
 	},

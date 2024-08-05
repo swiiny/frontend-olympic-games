@@ -29,7 +29,7 @@ export const StyledFireworkContainer = styled.div<{ type: 'mega' | 'blue' | 'red
 
 		transform: translateX(-50%);
 
-		width: 500px;
+		width: 600px;
 
 		transition: opacity 1s ease-in-out;
 

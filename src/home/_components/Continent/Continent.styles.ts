@@ -10,6 +10,8 @@ export const StyledContinentContainer = styled.div`
 
 	width: 204px;
 
+	z-index: 1;
+
 	// is set by gsap
 	opacity: 0;
 `;

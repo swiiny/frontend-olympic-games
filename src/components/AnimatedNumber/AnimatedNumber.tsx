@@ -41,7 +41,7 @@ export const AnimatedNumber: FC<{ value: number; withAnimation?: boolean }> = ({
 
 				animationRef.current = gsap.to(char, {
 					// format the speed so it's between 0.08 and 1
-					duration: Math.max(0.08, Math.min(1, speed)),
+					duration: Math.max(0.1, Math.min(1, speed)),
 					ease: 'power1.out',
 					yoyo: true,
 					repeat: -1,

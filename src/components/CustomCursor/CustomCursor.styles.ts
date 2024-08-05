@@ -11,4 +11,20 @@ export const StyledCustomCursor = styled.div`
 	opacity: 0;
 
 	transition: opacity 0.2s ease-in-out;
+
+	& .tour-eiffel-light {
+		position: absolute;
+		transition: opacity 1s ease-in-out;
+		opacity: 0;
+
+		transform: translate(-50%, -50%);
+	}
+
+	& .tour-eiffel-dark {
+		position: absolute;
+		transition: opacity 1s ease-in-out;
+		opacity: 1;
+
+		transform: translate(-50%, -50%);
+	}
 `;

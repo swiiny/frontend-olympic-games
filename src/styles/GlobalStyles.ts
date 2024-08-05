@@ -1,8 +1,8 @@
-import { createGlobalStyle, css, DefaultTheme } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import { EMediaQuery } from './utils/enums';
 import { mq } from './utils/functions';
 
-const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>(
+const GlobalStyles = createGlobalStyle(
 	({ theme }) => css`
 		* {
 			box-sizing: border-box;

@@ -27,7 +27,7 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 
 ## À faire
 
-- [ ] Implémenter l'interface de base
+- [x] Implémenter l'interface de base
 - [ ] Add metadata + cache for images & queries
 - [x] Work on the appear animation
 - [ ] Work on the responsiveness
