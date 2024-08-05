@@ -14,7 +14,7 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 
 ## Easter egg
 
-5 easter eggs sont cachés dans le projet, sauras-tu les trouver ?
+5 effets/easter eggs sont cachés dans le projet, sauras-tu les trouver ?
 
 <details>
 <summary>Attention, spoiler !</summary>
@@ -35,7 +35,7 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 - [x] Mettre à jour le compteur de médailles en temps réel
 - [x] Changer la largeur des cercles en fonction du nombre de médailles
 - [x] Make it juicy 💦
-- [ ] S'assurer que le projet démarre sans erreur après avoir pull le repo
+- [x] S'assurer que le projet démarre sans erreur après avoir pull le repo
 
 ## Ressources
 
