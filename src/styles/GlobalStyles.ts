@@ -77,16 +77,13 @@ const GlobalStyles = createGlobalStyle(
 			font-style: italic;
 		}
 
-		.martian-mono,
 		p.number,
 		.number {
-			font-family: 'Martian Mono', monospace;
+			font-family: 'Azeret Mono', monospace;
 			font-optical-sizing: auto;
 
-			font-family: 'Azeret Mono', monospace;
-
 			font-style: normal;
-			font-weight: 100 800;
+			font-weight: 100 900;
 
 			font-variation-settings: 'wdth' 400;
 		}

@@ -12,7 +12,7 @@ export const StyledContinentContainer = styled.div<{ type: EContinent; order: nu
 
 		position: absolute;
 
-		width: 224px;
+		width: auto;
 
 		z-index: 1;
 
@@ -37,8 +37,6 @@ export const StyledContinentContainer = styled.div<{ type: EContinent; order: nu
 		${mq(
 			EMediaQuery.md,
 			`
-			width: 152px;
-
 			${
 				type === EContinent.europe
 					? `top: 18%; left: 20%;`
@@ -58,7 +56,6 @@ export const StyledContinentContainer = styled.div<{ type: EContinent; order: nu
 			EMediaQuery.sm,
 			`
 			position: relative;
-
 			width: 100%;
 
 			top: unset;
@@ -79,9 +76,13 @@ export const StyledContinentContainer = styled.div<{ type: EContinent; order: nu
 export const StyledContinentHeader = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 
 	width: 100%;
+
+	gap: 20px;
+
+	${mq(EMediaQuery.sm, `justify-content: space-between;`)}
 `;
 
 export const StyledMedalWonWrapper = styled.div`
@@ -89,9 +90,11 @@ export const StyledMedalWonWrapper = styled.div`
 	align-items: center;
 	justify-content: space-between;
 
-	width: 100%;
+	width: auto;
 
-	${mq(EMediaQuery.sm, `justify-content: flex-end;`)}
+	gap: 20px;
+
+	${mq(EMediaQuery.sm, `justify-content: flex-end; width: 100%; gap: 8px;`)}
 `;
 
 export const StyledContinentLabel = styled.p<{ color: TOlympicRingColors }>(

@@ -48,10 +48,6 @@ export const StyledMedalAmount = styled.p<{ type: 'gold' | 'silver' | 'bronze' }
 		flex-shrink: 0;
 		align-items: center;
 
-		width: 40px;
-
-		${mq(EMediaQuery.md, `width: 30px;`)}
-
 		${mq(
 			EMediaQuery.sm,
 			`
