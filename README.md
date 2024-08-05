@@ -12,7 +12,7 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 
 ## Easter egg
 
-5 effets/easter eggs sont cachés dans le projet, sauras-tu les trouver ?
+Quelques effets et easter eggs sont cachés dans le projet, sauras-tu les trouver ?
 
 <details>
 <summary>Attention, spoiler !</summary>
