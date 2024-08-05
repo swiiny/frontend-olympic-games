@@ -83,6 +83,8 @@ const GlobalStyles = createGlobalStyle(
 			font-family: 'Martian Mono', monospace;
 			font-optical-sizing: auto;
 
+			font-family: 'Azeret Mono', monospace;
+
 			font-style: normal;
 			font-weight: 100 800;
 
