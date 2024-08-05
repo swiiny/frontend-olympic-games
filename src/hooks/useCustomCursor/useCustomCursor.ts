@@ -28,7 +28,7 @@ export const useCustomCursor = () => {
 
 		// Show the original cursor
 		const body = document.querySelector('body') as HTMLElement;
-		body.style.cursor = 'auto';
+		body.style.cursor = 'default';
 
 		document.removeEventListener('mousemove', updateCursorPosition);
 	}, []);

@@ -3,7 +3,7 @@ import { getResponsive } from './ResponsiveContext.functions';
 
 const ResponsiveContext = createContext<TUseResponsive | undefined>(undefined);
 
-const breakpoints = [480, 660, 900, 1200, 1400, 1600, 1800];
+const breakpoints = [480, 660, 960, 1200, 1400, 1600, 1800];
 
 const ResponsiveContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [screenFrames, setScreenFrames] = useState<TFrames>(getResponsive());

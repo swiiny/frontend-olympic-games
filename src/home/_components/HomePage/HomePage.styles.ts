@@ -1,3 +1,5 @@
+import { EMediaQuery } from '@styes/utils/enums';
+import { mq } from '@styes/utils/functions';
 import styled, { css } from 'styled-components';
 
 export const StyledHomePageContainer = styled.div`
@@ -38,6 +40,24 @@ export const StyledTitle = styled.h1`
 	z-index: 2;
 
 	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+	text-align: center;
+
+	& > span {
+		font-size: inherit;
+	}
+
+	${mq(
+		'800px',
+		`
+		font-size: 1.5rem; 
+		
+		margin-top: 40px;
+		margin-bottom: 20px;
+	`
+	)}
+
+	${mq(EMediaQuery.sm, `font-size: 1.4rem; display: inline-flex; flex-direction: column; margin-bottom: 0px;`)}
 `;
 
 export const StyledOlympicRingsContainer = styled.div`
@@ -54,6 +74,21 @@ export const StyledOlympicRingsContainer = styled.div`
 
 	padding-top: 140px;
 	padding-bottom: 100px;
+
+	${mq(
+		EMediaQuery.sm,
+		`
+			max-width: 100%;
+			flex-direction: column;
+
+			height: 80%; 
+			
+			padding: 0 50px;
+
+		`
+	)}
+
+	${mq(EMediaQuery.xs, 'padding: 0 16px;')}
 `;
 
 export const StyledSpan = styled.span`
@@ -69,4 +104,11 @@ export const StyledSpan = styled.span`
 		opacity: 0;
 		transform: scale(0.9) translateY(-5px);
 	}
+`;
+
+export const StyledDash = styled.span`
+	font-size: inherit;
+	font-weight: inherit;
+
+	${mq(EMediaQuery.sm, `display: none;`)}
 `;

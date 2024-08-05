@@ -14,6 +14,11 @@ declare module 'styled-components' {
 				silver: string;
 				bronze: string;
 			};
+			textGradient: {
+				gold: string;
+				silver: string;
+				bronze: string;
+			};
 		};
 	}
 }

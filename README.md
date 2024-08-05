@@ -14,23 +14,24 @@ Tu peux maintenant ouvrir ton navigateur et te rendre sur [http://localhost:4173
 
 ## Easter egg
 
+5 easter eggs sont cachés dans le projet, sauras-tu les trouver ?
+
 <details>
 <summary>Attention, spoiler !</summary>
 
-- Les montagnes bougent en fonction de la position de ton curseur mais... que se passe-t-il si tu passes ton curseur en dessus ?
-- Les totaux pour chaque continent pulsent au hover en fonction du nombre de médailles
-- Ton curseur a un effet magnétique sur les cercles du logo des Jeux Olympiques
-- Que se passe-t-il si tu passes ton curseur en dessus du mot "Paris" dans le titre ?
+- Les totaux pour chaque continent pulsent au hover.
+- Ton curseur a un effet magnétique sur les cercles du logo des Jeux Olympiques et a tendance à attirer vers lui une petite masse brillante qui se trouve dans les médailles or, argent et bronze.
+- Que se passe-t-il si tu passes ton curseur en dessous du mot "Paris" dans le titre ?
 - Et si tu cliques dessus ?
+- Les montagnes bougent en fonction de la position de ton curseur mais... que se passe-t-il si tu passes ton curseur en dessus ?
 
 </details>
 
 ## À faire
 
 - [x] Implémenter l'interface de base
-- [ ] Add metadata + cache for images & queries
 - [x] Work on the appear animation
-- [ ] Work on the responsiveness
+- [x] Work on the responsiveness
 - [x] Mettre à jour le compteur de médailles en temps réel
 - [x] Changer la largeur des cercles en fonction du nombre de médailles
 - [x] Make it juicy 💦

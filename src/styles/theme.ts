@@ -13,6 +13,11 @@ export const defaultTheme: DefaultTheme = {
 			gold: 'linear-gradient(90deg, #B38728 4.28%, #FCF6BA 100%)',
 			silver: 'linear-gradient(90deg, #A3A3A3 4.28%, #E9E9E9 100%)',
 			bronze: 'linear-gradient(90deg, #8F6915 4.28%, #E1CD02 100%)'
+		},
+		textGradient: {
+			gold: 'linear-gradient(90deg, #B38728 4.28%, #e6dd7c 100%)',
+			silver: 'linear-gradient(90deg, #A3A3A3 4.28%, #d1d1d1 100%)',
+			bronze: 'linear-gradient(90deg, #8F6915 4.28%, #E1CD02 100%)'
 		}
 	}
 };

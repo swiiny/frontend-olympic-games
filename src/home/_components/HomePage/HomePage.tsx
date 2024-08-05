@@ -7,6 +7,7 @@ import OlympicRings from '../OlympicRings';
 import ViveLaFrance from '../ViveLaFrance';
 import {
 	StyledBackground,
+	StyledDash,
 	StyledHomePageContainer,
 	StyledOlympicRingsContainer,
 	StyledSpan,
@@ -36,25 +37,28 @@ export const HomePage = () => {
 				<StyledBackground className='dark-background' />
 
 				<StyledTitle>
-					Médailles Olympiques par continent -{' '}
-					<StyledSpan
-						onMouseEnter={onMouseEnter}
-						onMouseLeave={onMouseLeave}
-						onClick={() => setIsParisTheCityOfLight((prev) => !prev)}
-					>
-						Paris
-					</StyledSpan>{' '}
-					2024
+					Médailles Olympiques par continent
+					<StyledDash>{` - `}</StyledDash>
+					<span>
+						<StyledSpan
+							onMouseEnter={onMouseEnter}
+							onMouseLeave={onMouseLeave}
+							onClick={() => setIsParisTheCityOfLight((prev) => !prev)}
+						>
+							Paris
+						</StyledSpan>{' '}
+						2024
+					</span>
 				</StyledTitle>
 
 				<StyledOlympicRingsContainer>
+					<OlympicRings animateToWhite={isParisTheCityOfLight} />
+
 					<Continent type={EContinent.europe} order={1} />
 					<Continent type={EContinent.africa} order={3} />
 					<Continent type={EContinent.asia} order={2} />
 					<Continent type={EContinent.oceania} order={4} />
 					<Continent type={EContinent.america} order={5} />
-
-					<OlympicRings animateToWhite={isParisTheCityOfLight} />
 				</StyledOlympicRingsContainer>
 
 				<Mountains />

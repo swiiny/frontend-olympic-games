@@ -1,21 +1,15 @@
-import { CSSProperties } from 'react';
 import { EContinent } from './continent.enums';
 
 export const continentMap: {
 	[key in EContinent]: {
 		label: string;
 		color: TOlympicRingColors;
-		style: CSSProperties;
 		nations: { name: string; id: string }[];
 	};
 } = {
 	[EContinent.europe]: {
 		label: 'europe',
 		color: 'blue',
-		style: {
-			top: '30px',
-			left: '0px'
-		},
 		nations: [
 			{ name: 'France', id: 'FRA' },
 			{ name: 'Great Britain', id: 'GBR' },
@@ -37,7 +31,7 @@ export const continentMap: {
 			{ name: 'Greece', id: 'GRE' },
 			{ name: 'Poland', id: 'POL' },
 			{ name: 'Kosovo', id: 'KOS' },
-			{ name: 'Turkiye', id: 'TUR' },
+			{ name: 'Turkey', id: 'TUR' },
 			{ name: 'Ukraine', id: 'UKR' },
 			{ name: 'Denmark', id: 'DEN' },
 			{ name: 'Moldova', id: 'MDA' },
@@ -50,11 +44,6 @@ export const continentMap: {
 	[EContinent.africa]: {
 		label: 'Afrique',
 		color: 'black',
-		style: {
-			top: '0px',
-			left: '50%',
-			transform: 'translateX(-50%)'
-		},
 		nations: [
 			{ name: 'South Africa', id: 'RSA' },
 			{ name: 'Uganda', id: 'UGA' },
@@ -66,10 +55,6 @@ export const continentMap: {
 	[EContinent.america]: {
 		label: 'Amérique',
 		color: 'red',
-		style: {
-			top: '30px',
-			right: '0'
-		},
 		nations: [
 			{ name: 'United States', id: 'USA' },
 			{ name: 'Canada', id: 'CAN' },
@@ -83,10 +68,6 @@ export const continentMap: {
 	[EContinent.asia]: {
 		label: 'Asie',
 		color: 'yellow',
-		style: {
-			bottom: '0px',
-			left: '15%'
-		},
 		nations: [
 			{ name: 'China', id: 'CHN' },
 			{ name: 'South Korea', id: 'KOR' },
@@ -107,10 +88,6 @@ export const continentMap: {
 	[EContinent.oceania]: {
 		label: 'Océanie',
 		color: 'green',
-		style: {
-			bottom: '0px',
-			right: '15%'
-		},
 		nations: [
 			{ name: 'Australia', id: 'AUS' },
 			{ name: 'New Zealand', id: 'NZL' },

@@ -1,6 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
 import { EMediaQuery } from './utils/enums';
-import { mq } from './utils/functions';
 
 const GlobalStyles = createGlobalStyle(
 	({ theme }) => css`
@@ -23,10 +22,12 @@ const GlobalStyles = createGlobalStyle(
 
 			max-width: ${EMediaQuery.xl};
 
-			${mq(EMediaQuery.md, 'padding: 0;')}
-
 			min-height: 100dvh;
 			background: ${theme.colors.white};
+
+			overflow: hidden;
+
+			cursor: default;
 		}
 
 		html {

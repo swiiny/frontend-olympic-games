@@ -13,22 +13,34 @@ const OlympicRings: FC<{
 }> = ({ animateToWhite }) => {
 	const svgRef = useRef(null);
 
-	const { isSmallerThanMd } = useResponsive();
+	const { isSmallerThanXs, isSmallerThanSm, isSmallerThanMd } = useResponsive();
 	const { colors } = useTheme();
 
 	const strokesWidth = useStrokesWidth(animateToWhite);
 
 	const style = useMemo(() => {
+		if (isSmallerThanSm) {
+			if (isSmallerThanXs) {
+				return {
+					transform: 'scale(0.7)'
+				};
+			}
+
+			return {
+				transform: 'scale(0.8)'
+			};
+		}
+
 		if (isSmallerThanMd) {
 			return {
-				transform: 'scale(1)'
+				transform: 'scale(1.2)'
 			};
 		}
 
 		return {
 			transform: 'scale(2)'
 		};
-	}, [isSmallerThanMd]);
+	}, [isSmallerThanXs, isSmallerThanSm, isSmallerThanMd]);
 
 	useEffect(() => {
 		const svgElement = svgRef.current;
@@ -204,7 +216,7 @@ const OlympicRings: FC<{
 		}
 	}, [colors, strokesWidth, animateToWhite]);
 
-	return <svg className='d3-component' ref={svgRef} style={style} />;
+	return <svg ref={svgRef} style={style} />;
 };
 
 // Prevent reset on "Vive la France" easter egg activation

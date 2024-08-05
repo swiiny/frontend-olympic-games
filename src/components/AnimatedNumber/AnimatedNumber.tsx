@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import React, { FC, MouseEventHandler, useEffect, useMemo, useRef, useState } from 'react';
-import CountUp from 'react-countup';
+import { StyledCountUp } from './AnimatedNumber.styles';
 
 const inheritTextStyles: React.CSSProperties = {
 	color: 'inherit',
@@ -37,14 +37,11 @@ export const AnimatedNumber: FC<{ value: number; withAnimation?: boolean }> = ({
 			onMouseEnter: (e: MouseEvent) => {
 				const char = e.target as HTMLSpanElement;
 
-				const speed = 16 / value;
-
 				animationRef.current = gsap.to(char, {
-					// format the speed so it's between 0.08 and 1
-					duration: Math.max(0.1, Math.min(1, speed)),
+					duration: 0.1,
 					ease: 'power1.out',
 					yoyo: true,
-					repeat: -1,
+					repeat: 4,
 					fontVariationSettings: "'wght' 700" // Target weight
 				});
 			},
@@ -64,11 +61,11 @@ export const AnimatedNumber: FC<{ value: number; withAnimation?: boolean }> = ({
 				});
 			}
 		};
-	}, [value, withAnimation]);
+	}, [withAnimation]);
 
 	return (
-		<CountUp
-			className='number'
+		<StyledCountUp
+			className={`number${withAnimation ? ' with-animation' : ''}`}
 			style={inheritTextStyles}
 			start={savedValue || 0}
 			delay={0}

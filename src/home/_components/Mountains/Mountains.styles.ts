@@ -1,3 +1,5 @@
+import { EMediaQuery } from '@styes/utils/enums';
+import { mq } from '@styes/utils/functions';
 import styled from 'styled-components';
 
 export const StyledMountainsContainer = styled.div`
@@ -31,6 +33,13 @@ export const StyledMountainsContainer = styled.div`
 	& img {
 		transition: transform 0.2s linear;
 	}
+
+	${mq(
+		EMediaQuery.md,
+		`
+		bottom: -4px;
+	`
+	)}
 `;
 
 // og width = 4858px
@@ -45,8 +54,6 @@ export const StyledSmallMountains = styled.img`
 	height: auto;
 
 	bottom: 4px;
-
-	//filter: drop-shadow(6px 0px 2px rgba(0, 0, 0, 0.11));
 
 	// original mountains small 1 width 742px
 	&.mountains-small-1 {
@@ -87,7 +94,10 @@ export const StylesMadeInSwitzerland = styled.img`
 
 	aspect-ratio: 81 / 43;
 	width: calc((488 / 4858) * 100%);
-	left: calc(33%);
+	left: 33%;
 
-	bottom: 60px;
+	bottom: 50px;
+
+	${mq(EMediaQuery.lg, 'width: calc((300 / 4858) * 100%); left: calc(33% + 6px); bottom: 52px;')}
+	${mq(EMediaQuery.md, 'width: calc((400 / 4858) * 100%); bottom: 12px;')}
 `;

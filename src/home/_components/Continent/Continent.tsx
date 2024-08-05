@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect } from 'react';
 
+import useResponsive from '@hooks/useResponsive';
 import gsap from 'gsap';
 import AnimatedNumber from 'src/components/AnimatedNumber';
 import useMedalsQuery from 'src/queries/useMedalsQuery';
@@ -18,46 +19,71 @@ export const Continent: FC<{
 	type: EContinent;
 	order: number;
 }> = ({ type, order }) => {
+	const { isSmallerThanSm } = useResponsive();
 	const { data } = useMedalsQuery();
 
 	const { goldAmount, silverAmount, bronzeAmount, totalAmount } = data[type];
 
-	//const [isDisplayed, setIsDisplayed] = useState(false);
-
 	const showContinent = useCallback(() => {
 		const postInit = { x: 0, y: 0 };
 
-		switch (type) {
-			case EContinent.europe:
-				postInit.x = -1400;
-				postInit.y = -1400;
-				break;
-			case EContinent.africa:
-				postInit.x = 0;
-				postInit.y = -1400;
-				break;
-			case EContinent.america:
-				postInit.x = 1400;
-				postInit.y = -1400;
-				break;
-			case EContinent.asia:
-				postInit.x = -1000;
-				postInit.y = 1400;
-				break;
-			case EContinent.oceania:
-				postInit.x = 1000;
-				postInit.y = 1400;
-				break;
-			default:
-				break;
+		if (isSmallerThanSm) {
+			switch (type) {
+				case EContinent.europe:
+					postInit.x = 0;
+					postInit.y = 600;
+					break;
+				case EContinent.africa:
+					postInit.x = 0;
+					postInit.y = 600;
+					break;
+				case EContinent.america:
+					postInit.x = 0;
+					postInit.y = 600;
+					break;
+				case EContinent.asia:
+					postInit.x = 0;
+					postInit.y = 600;
+					break;
+				case EContinent.oceania:
+					postInit.x = 0;
+					postInit.y = 600;
+					break;
+				default:
+					break;
+			}
+		} else {
+			switch (type) {
+				case EContinent.europe:
+					postInit.x = -1400;
+					postInit.y = -1400;
+					break;
+				case EContinent.africa:
+					postInit.x = 0;
+					postInit.y = -1400;
+					break;
+				case EContinent.america:
+					postInit.x = 1400;
+					postInit.y = -1400;
+					break;
+				case EContinent.asia:
+					postInit.x = -1000;
+					postInit.y = 1400;
+					break;
+				case EContinent.oceania:
+					postInit.x = 1000;
+					postInit.y = 1400;
+					break;
+				default:
+					break;
+			}
 		}
 
 		// animate appearance with gsap
 		gsap.fromTo(
 			`[data-continent="${type}"]`,
 			{
-				//opacity: 0,
-				scale: 16,
+				scale: isSmallerThanSm ? 1 : 16,
 				...postInit
 			},
 			{
@@ -67,17 +93,21 @@ export const Continent: FC<{
 				scale: 1,
 				duration: 0.5,
 				delay: 0.1 * order,
-				ease: 'power2.out'
+				ease: 'power2.out',
+				onComplete: () => {
+					// remove style property transform
+					gsap.set(`[data-continent="${type}"]`, { clearProps: 'transform' });
+				}
 			}
 		);
-	}, [order, type]);
+	}, [order, type, isSmallerThanSm]);
 
 	useEffect(() => {
 		showContinent();
 	}, [showContinent]);
 
 	return (
-		<StyledContinentContainer className='continents' data-continent={type} style={continentMap[type].style}>
+		<StyledContinentContainer className='continents' type={type} data-continent={type} order={order}>
 			<StyledContinentHeader>
 				<StyledContinentLabel color={continentMap[type].color}>{continentMap[type].label}</StyledContinentLabel>
 
